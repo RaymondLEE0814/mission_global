@@ -1,0 +1,20 @@
+{
+  "name": "salvation-way",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "구원의 길 — 3분 전도 모바일/태블릿 웹 앱",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --host"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.4.8"
+  }
+}
