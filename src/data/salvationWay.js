@@ -41,8 +41,8 @@ const stagesKo = [
   },
   {
     id: 1,
-    title: '원래 인간',
-    subtitle: '형상 · 복 · 언약',
+    title: '1. 원래 인간',
+    subtitle: '형상 · 복 · 예배와 찬양 · 언약',
     crossPos: { x: 50, y: 8 },
     verses: [
       {
@@ -58,6 +58,12 @@ const stagesKo = [
           '하나님이 그들에게 복을 주시며 하나님이 그들에게 이르시되 생육하고 번성하여 땅에 충만하라 땅을 정복하라 바다의 물고기와 하늘의 새와 땅에 움직이는 모든 생물을 다스리라 하시니라'
       },
       {
+        reference: '창 2:1~2',
+        label: '예배와 찬양',
+        text:
+          '1 천지와 만물이 다 이루어지니라 2 하나님이 그가 하시던 일을 일곱째 날에 마치시니 그가 하시던 모든 일을 그치고 일곱째 날에 안식하시니라'
+      },
+      {
         reference: '창 2:17',
         label: '언약',
         text:
@@ -67,7 +73,7 @@ const stagesKo = [
   },
   {
     id: 2,
-    title: '근본 문제',
+    title: '2. 근본 문제',
     subtitle: '사탄 · 죄 · 떠남',
     crossPos: { x: 50, y: 20 },
     verses: [
@@ -93,7 +99,7 @@ const stagesKo = [
   },
   {
     id: 3,
-    title: '불신자의 상태',
+    title: '3. 불신자의 상태',
     subtitle: '마귀자녀 · 영적·정신·육신·내세·후대 문제',
     crossPos: { x: 50, y: 30 },
     verses: [
@@ -137,7 +143,7 @@ const stagesKo = [
   },
   {
     id: 4,
-    title: '인간의 방법',
+    title: '4. 인간의 방법',
     subtitle: '종교 · 선행 · 철학으로는 해결되지 않는다',
     crossPos: { x: 18, y: 40 },
     verses: [
@@ -163,7 +169,7 @@ const stagesKo = [
   },
   {
     id: 5,
-    title: '하나님의 방법',
+    title: '5. 하나님의 방법',
     subtitle: '구원자 · 예수님 · 십자가 · 부활 · 그리스도 · 승천 · 재림',
     crossPos: { x: 50, y: 40 },
     verses: [
@@ -213,7 +219,7 @@ const stagesKo = [
   },
   {
     id: 6,
-    title: '그리스도',
+    title: '6. 그리스도 3직',
     subtitle: '참 왕 · 참 제사장 · 참 선지자',
     crossPos: { x: 82, y: 40 },
     verses: [
@@ -239,7 +245,7 @@ const stagesKo = [
   },
   {
     id: 7,
-    title: '근본 문제 해결',
+    title: '7. 근본 문제 해결',
     subtitle: '마귀의 일을 멸하시고 · 해방 · 길이 되심',
     crossPos: { x: 50, y: 52 },
     verses: [
@@ -265,7 +271,7 @@ const stagesKo = [
   },
   {
     id: 8,
-    title: '어떻게 구원',
+    title: '8. 어떻게 구원',
     subtitle: '영접 · 마음과 입의 시인 · 마음 문 열기 · 지금',
     crossPos: { x: 50, y: 64 },
     verses: [
@@ -297,9 +303,30 @@ const stagesKo = [
   },
   {
     id: 9,
-    title: '구원받은 자의 축복',
+    title: '9. 영접 기도',
+    subtitle: '예수 그리스도를 마음의 주인으로 모시는 결단의 기도',
+    crossPos: { x: 50, y: 72 },
+    verses: [
+      {
+        reference: '결단의 기도',
+        label: '함께 따라 읽기',
+        text: `살아계신 하나님 /  저는 죄인 입니다 / 마귀에 속아 하나님을 떠났습니다./지금까지 내 마음대로 내 뜻대로/
+고통 속에 살아왔습니다.  지금 이 시간에 제 마음에 문을 활짝 열고./예수님께서 십자가에서 죽으시고/ 부활 하신 그리스도이심을 믿습니다./ 마귀의 머리를 박살 내시고 / 나의 모든 죄를 용서 하시고 / 하나님 만나는 길을 여신 예수 그리스도를 제 마음속에 주인으로 영접 합니다 / 지금 성령으로 / 제 마음속에 들어오셔서 저를 하나님 자녀로 삼아 주시고 / 참 행복을 누리며 살게 해주세요 / 진리의 성령 께서 저를 인도하시고 / 역사해 주옵소서
+/예수 그리스도의 이름으로 기도합니다. 아멘`
+      },
+      {
+        reference: '축복의 메시지',
+        label: '이제 시작입니다',
+        text:
+          '이제 당신은 그리스도 예수님을 구주로 영접하셨기에 하나님과 함께하는 삶을 통해서 하나님이 주시는 축복된 삶을 살게 됩니다. 날마다 성경말씀을 읽고 그 말씀을 통해 세상이 줄 어떤 것보다 소중한 생명을 얻는 삶을 살도록 축복하며 기도합니다. 사랑합니다.'
+      }
+    ]
+  },
+  {
+    id: 10,
+    title: '10. 구원받은 자의 축복',
     subtitle: '성령내주 · 인도 · 역사 · 천사도움 · 사탄결박 · 천국시민권 · 세계복음화',
-    crossPos: { x: 50, y: 76 },
+    crossPos: { x: 50, y: 80 },
     verses: [
       {
         reference: '고전 3:16',
@@ -346,9 +373,9 @@ const stagesKo = [
     ]
   },
   {
-    id: 10,
+    id: 11,
     title: '지상명령',
-    subtitle: '마 28 · 막 16 · 행 1:8',
+    subtitle: '참고 · 마 28 · 막 16 · 행 1:8',
     crossPos: { x: 50, y: 88 },
     verses: [
       {
@@ -372,9 +399,9 @@ const stagesKo = [
     ]
   },
   {
-    id: 11,
+    id: 12,
     title: '성도의 확신 5가지',
-    subtitle: '구원 · 인도 · 기도응답 · 사죄 · 승리',
+    subtitle: '참고 · 구원 · 인도 · 기도응답 · 사죄 · 승리',
     crossPos: { x: 50, y: 96 },
     verses: [
       {
@@ -406,27 +433,6 @@ const stagesKo = [
         label: '승리의 확신',
         text:
           '그러나 이 모든 일에 우리를 사랑하시는 이로 말미암아 우리가 넉넉히 이기느니라'
-      }
-    ]
-  },
-  {
-    id: 12,
-    title: '영접 기도',
-    subtitle: '예수 그리스도를 마음의 주인으로 모시는 결단의 기도',
-    crossPos: { x: 50, y: 100 },
-    verses: [
-      {
-        reference: '결단의 기도',
-        label: '함께 따라 읽기',
-        text: `살아계신 하나님 /  저는 죄인 입니다 / 마귀에 속아 하나님을 떠났습니다./지금까지 내 마음대로 내 뜻대로/
-고통 속에 살아왔습니다.  지금 이 시간에 제 마음에 문을 활짝 열고./예수님께서 십자가에서 죽으시고/ 부활 하신 그리스도이심을 믿습니다./ 마귀의 머리를 박살 내시고 / 나의 모든 죄를 용서 하시고 / 하나님 만나는 길을 여신 예수 그리스도를 제 마음속에 주인으로 영접 합니다 / 지금 성령으로 / 제 마음속에 들어오셔서 저를 하나님 자녀로 삼아 주시고 / 참 행복을 누리며 살게 해주세요 / 진리의 성령 께서 저를 인도하시고 / 역사해 주옵소서
-/예수 그리스도의 이름으로 기도합니다. 아멘`
-      },
-      {
-        reference: '축복의 메시지',
-        label: '이제 시작입니다',
-        text:
-          '이제 당신은 그리스도 예수님을 구주로 영접하셨기에 하나님과 함께하는 삶을 통해서 하나님이 주시는 축복된 삶을 살게 됩니다. 날마다 성경말씀을 읽고 그 말씀을 통해 세상이 줄 어떤 것보다 소중한 생명을 얻는 삶을 살도록 축복하며 기도합니다. 사랑합니다.'
       }
     ]
   }
@@ -461,8 +467,8 @@ const stagesEn = [
   },
   {
     id: 1,
-    title: 'Original Humanity',
-    subtitle: 'Image · Blessing · Covenant',
+    title: '1. Original Humanity',
+    subtitle: 'Image · Blessing · Worship & Praise · Covenant',
     crossPos: { x: 50, y: 8 },
     verses: [
       {
@@ -478,6 +484,12 @@ const stagesEn = [
           `God blessed them. God said to them, "Be fruitful, multiply, fill the earth, and subdue it. Have dominion over the fish of the sea, over the birds of the sky, and over every living thing that moves on the earth."`
       },
       {
+        reference: 'Gen 2:1~2',
+        label: 'Worship & Praise',
+        text:
+          `1 The heavens, the earth, and all their vast army were finished. 2 On the seventh day God finished his work which he had done; and he rested on the seventh day from all his work which he had done.`
+      },
+      {
         reference: 'Gen 2:17',
         label: 'Covenant',
         text:
@@ -487,7 +499,7 @@ const stagesEn = [
   },
   {
     id: 2,
-    title: 'The Root Problem',
+    title: '2. The Root Problem',
     subtitle: 'Satan · Sin · Departure',
     crossPos: { x: 50, y: 20 },
     verses: [
@@ -513,7 +525,7 @@ const stagesEn = [
   },
   {
     id: 3,
-    title: 'State of Unbelievers',
+    title: '3. State of Unbelievers',
     subtitle: "Children of the devil · Spiritual · Mental · Physical · Eternal · Generational issues",
     crossPos: { x: 50, y: 30 },
     verses: [
@@ -557,7 +569,7 @@ const stagesEn = [
   },
   {
     id: 4,
-    title: 'Human Methods',
+    title: '4. Human Methods',
     subtitle: 'Religion · Good Works · Philosophy cannot save',
     crossPos: { x: 18, y: 40 },
     verses: [
@@ -583,7 +595,7 @@ const stagesEn = [
   },
   {
     id: 5,
-    title: "God's Method",
+    title: "5. God's Method",
     subtitle: 'Savior · Jesus · Cross · Resurrection · Christ · Ascension · Second Coming',
     crossPos: { x: 50, y: 40 },
     verses: [
@@ -633,7 +645,7 @@ const stagesEn = [
   },
   {
     id: 6,
-    title: 'Christ',
+    title: '6. Christ — Three Offices',
     subtitle: 'True King · True Priest · True Prophet',
     crossPos: { x: 82, y: 40 },
     verses: [
@@ -659,7 +671,7 @@ const stagesEn = [
   },
   {
     id: 7,
-    title: 'Solving the Root Problem',
+    title: '7. Solving the Root Problem',
     subtitle: "Destroying the devil's work · Liberation · The Way",
     crossPos: { x: 50, y: 52 },
     verses: [
@@ -685,7 +697,7 @@ const stagesEn = [
   },
   {
     id: 8,
-    title: 'How to Be Saved',
+    title: '8. How to Be Saved',
     subtitle: "Receive · Confess with heart and mouth · Open the heart's door · Now",
     crossPos: { x: 50, y: 64 },
     verses: [
@@ -717,9 +729,50 @@ const stagesEn = [
   },
   {
     id: 9,
-    title: 'Blessings of the Saved',
+    title: '9. Acceptance Prayer',
+    subtitle: 'A prayer to receive Jesus Christ as the Lord of your heart',
+    crossPos: { x: 50, y: 72 },
+    verses: [
+      {
+        reference: 'Prayer of Decision',
+        label: 'Pray together',
+        text: `Living God,
+I am a sinner.
+I was deceived by the devil and turned away from You.
+Until now I have lived according to my own will and desires,
+in the midst of suffering.
+
+At this very moment, I open the door of my heart wide,
+and I believe that Jesus died on the cross
+and rose again as the Christ.
+
+He crushed the head of the devil,
+forgave all my sins,
+and opened the way to meet God.
+I receive Jesus Christ as the Lord of my heart.
+
+Come into my heart now by the Holy Spirit,
+make me a child of God,
+and let me live in true happiness.
+
+May the Spirit of Truth guide me
+and work powerfully in me.
+
+In the name of Jesus Christ I pray. Amen.`
+      },
+      {
+        reference: 'A Word of Blessing',
+        label: 'A new beginning',
+        text:
+          `Now that you have received Christ Jesus as your Savior, you will live the blessed life God gives, walking together with Him each day. May you read the Bible daily, and through His Word receive a life that finds the most precious treasure—life itself, more valuable than anything the world can offer. I bless you and pray for you. I love you.`
+      }
+    ]
+  },
+  {
+    id: 10,
+    title: '10. Blessings of the Saved',
     subtitle: "Spirit's indwelling · Guidance · Power · Angelic help · Satan bound · Heavenly citizenship · World evangelization",
-    crossPos: { x: 50, y: 76 },
+    crossPos: { x: 50, y: 80 },
     verses: [
       {
         reference: '1 Cor 3:16',
@@ -766,9 +819,9 @@ const stagesEn = [
     ]
   },
   {
-    id: 10,
+    id: 11,
     title: 'The Great Commission',
-    subtitle: 'Matt 28 · Mark 16 · Acts 1:8',
+    subtitle: 'Reference · Matt 28 · Mark 16 · Acts 1:8',
     crossPos: { x: 50, y: 88 },
     verses: [
       {
@@ -792,9 +845,9 @@ const stagesEn = [
     ]
   },
   {
-    id: 11,
+    id: 12,
     title: 'Five Assurances of the Believer',
-    subtitle: 'Salvation · Guidance · Answered Prayer · Forgiveness · Victory',
+    subtitle: 'Reference · Salvation · Guidance · Answered Prayer · Forgiveness · Victory',
     crossPos: { x: 50, y: 96 },
     verses: [
       {
@@ -828,47 +881,6 @@ const stagesEn = [
           `No, in all these things, we are more than conquerors through him who loved us.`
       }
     ]
-  },
-  {
-    id: 12,
-    title: 'Acceptance Prayer',
-    subtitle: 'A prayer to receive Jesus Christ as the Lord of your heart',
-    crossPos: { x: 50, y: 100 },
-    verses: [
-      {
-        reference: 'Prayer of Decision',
-        label: 'Pray together',
-        text: `Living God,
-I am a sinner.
-I was deceived by the devil and turned away from You.
-Until now I have lived according to my own will and desires,
-in the midst of suffering.
-
-At this very moment, I open the door of my heart wide,
-and I believe that Jesus died on the cross
-and rose again as the Christ.
-
-He crushed the head of the devil,
-forgave all my sins,
-and opened the way to meet God.
-I receive Jesus Christ as the Lord of my heart.
-
-Come into my heart now by the Holy Spirit,
-make me a child of God,
-and let me live in true happiness.
-
-May the Spirit of Truth guide me
-and work powerfully in me.
-
-In the name of Jesus Christ I pray. Amen.`
-      },
-      {
-        reference: 'A Word of Blessing',
-        label: 'A new beginning',
-        text:
-          `Now that you have received Christ Jesus as your Savior, you will live the blessed life God gives, walking together with Him each day. May you read the Bible daily, and through His Word receive a life that finds the most precious treasure—life itself, more valuable than anything the world can offer. I bless you and pray for you. I love you.`
-      }
-    ]
   }
 ]
 
@@ -891,52 +903,52 @@ const buildLocalizedStages = (titles) =>
 /** @type {Stage[]} — Bahasa Indonesia (titles & subtitles only; verses pending) */
 const stagesId = buildLocalizedStages([
   { id: 0, title: 'Awal — Tuhan dan Manusia', subtitle: 'Titik permulaan Jalan Keselamatan · 3 Menit' },
-  { id: 1, title: 'Manusia Asli', subtitle: 'Gambar · Berkat · Perjanjian' },
-  { id: 2, title: 'Masalah Pokok', subtitle: 'Iblis · Dosa · Kepergian' },
-  { id: 3, title: 'Keadaan Orang yang Tidak Percaya', subtitle: 'Anak Iblis · Roh · Jiwa · Tubuh · Akhirat · Keturunan' },
-  { id: 4, title: 'Cara Manusia', subtitle: 'Agama · Amal · Filsafat tidak menyelamatkan' },
-  { id: 5, title: 'Cara Tuhan', subtitle: 'Penyelamat · Yesus · Salib · Kebangkitan · Kristus · Kenaikan · Kedatangan Kembali' },
-  { id: 6, title: 'Kristus', subtitle: 'Raja Sejati · Imam Sejati · Nabi Sejati' },
-  { id: 7, title: 'Penyelesaian Masalah Pokok', subtitle: 'Membinasakan pekerjaan Iblis · Pembebasan · Sang Jalan' },
-  { id: 8, title: 'Bagaimana Memperoleh Keselamatan', subtitle: 'Menerima · Mengaku dengan hati & mulut · Membuka pintu hati · Sekarang' },
-  { id: 9, title: 'Berkat bagi yang Diselamatkan', subtitle: 'Roh Kudus diam · Pimpinan · Pekerjaan · Pertolongan malaikat · Iblis terikat · Kewargaan sorga · Penginjilan dunia' },
-  { id: 10, title: 'Amanat Agung', subtitle: 'Mat 28 · Mrk 16 · Kis 1:8' },
-  { id: 11, title: 'Lima Keyakinan Orang Percaya', subtitle: 'Keselamatan · Pimpinan · Doa terjawab · Pengampunan · Kemenangan' },
-  { id: 12, title: 'Doa Penerimaan', subtitle: 'Doa keputusan untuk menerima Yesus Kristus sebagai Tuhan dalam hati' }
+  { id: 1, title: '1. Manusia Asli', subtitle: 'Gambar · Berkat · Penyembahan & Pujian · Perjanjian' },
+  { id: 2, title: '2. Masalah Pokok', subtitle: 'Iblis · Dosa · Kepergian' },
+  { id: 3, title: '3. Keadaan Orang yang Tidak Percaya', subtitle: 'Anak Iblis · Roh · Jiwa · Tubuh · Akhirat · Keturunan' },
+  { id: 4, title: '4. Cara Manusia', subtitle: 'Agama · Amal · Filsafat tidak menyelamatkan' },
+  { id: 5, title: '5. Cara Tuhan', subtitle: 'Penyelamat · Yesus · Salib · Kebangkitan · Kristus · Kenaikan · Kedatangan Kembali' },
+  { id: 6, title: '6. Kristus — Tiga Jabatan', subtitle: 'Raja Sejati · Imam Sejati · Nabi Sejati' },
+  { id: 7, title: '7. Penyelesaian Masalah Pokok', subtitle: 'Membinasakan pekerjaan Iblis · Pembebasan · Sang Jalan' },
+  { id: 8, title: '8. Bagaimana Memperoleh Keselamatan', subtitle: 'Menerima · Mengaku dengan hati & mulut · Membuka pintu hati · Sekarang' },
+  { id: 9, title: '9. Doa Penerimaan', subtitle: 'Doa keputusan untuk menerima Yesus Kristus sebagai Tuhan dalam hati' },
+  { id: 10, title: '10. Berkat bagi yang Diselamatkan', subtitle: 'Roh Kudus diam · Pimpinan · Pekerjaan · Pertolongan malaikat · Iblis terikat · Kewargaan sorga · Penginjilan dunia' },
+  { id: 11, title: 'Amanat Agung', subtitle: 'Referensi · Mat 28 · Mrk 16 · Kis 1:8' },
+  { id: 12, title: 'Lima Keyakinan Orang Percaya', subtitle: 'Referensi · Keselamatan · Pimpinan · Doa terjawab · Pengampunan · Kemenangan' }
 ])
 
 /** @type {Stage[]} — Tagalog (titles & subtitles only; verses pending) */
 const stagesTl = buildLocalizedStages([
   { id: 0, title: 'Simula — Diyos at Tao', subtitle: 'Simula ng Daan ng Kaligtasan · 3-Minutong Ebanghelyo' },
-  { id: 1, title: 'Orihinal na Tao', subtitle: 'Larawan · Pagpapala · Tipan' },
-  { id: 2, title: 'Pangunahing Suliranin', subtitle: 'Satanas · Kasalanan · Paglayo' },
-  { id: 3, title: 'Kalagayan ng Hindi Naniniwala', subtitle: 'Anak ng Diyablo · Espirituwal · Pangkaisipan · Pisikal · Walang Hanggan · Henerasyon' },
-  { id: 4, title: 'Paraan ng Tao', subtitle: 'Relihiyon · Mabubuting gawa · Pilosopiya — hindi nakapagliligtas' },
-  { id: 5, title: 'Paraan ng Diyos', subtitle: 'Tagapagligtas · Hesus · Krus · Muling Pagkabuhay · Kristo · Pag-akyat · Muling Pagdating' },
-  { id: 6, title: 'Kristo', subtitle: 'Tunay na Hari · Tunay na Saserdote · Tunay na Propeta' },
-  { id: 7, title: 'Paglutas sa Pangunahing Suliranin', subtitle: 'Pagsira sa gawa ng Diyablo · Kalayaan · Ang Daan' },
-  { id: 8, title: 'Paano Maliligtas', subtitle: 'Tanggapin · Ipahayag sa puso at bibig · Buksan ang pinto ng puso · Ngayon' },
-  { id: 9, title: 'Mga Pagpapala ng Naligtas', subtitle: 'Pananahanan ng Espiritu · Patnubay · Kapangyarihan · Tulong ng Anghel · Nakatali si Satanas · Mamamayan ng Langit · Pang-mundong Ebanghelisasyon' },
-  { id: 10, title: 'Dakilang Utos', subtitle: 'Mat 28 · Mar 16 · Mga Gawa 1:8' },
-  { id: 11, title: 'Limang Katiyakan ng Mananampalataya', subtitle: 'Kaligtasan · Patnubay · Sagot sa panalangin · Kapatawaran · Tagumpay' },
-  { id: 12, title: 'Panalangin ng Pagtanggap', subtitle: 'Panalangin upang tanggapin si Hesukristo bilang Panginoon ng puso' }
+  { id: 1, title: '1. Orihinal na Tao', subtitle: 'Larawan · Pagpapala · Pagsamba at Pagpupuri · Tipan' },
+  { id: 2, title: '2. Pangunahing Suliranin', subtitle: 'Satanas · Kasalanan · Paglayo' },
+  { id: 3, title: '3. Kalagayan ng Hindi Naniniwala', subtitle: 'Anak ng Diyablo · Espirituwal · Pangkaisipan · Pisikal · Walang Hanggan · Henerasyon' },
+  { id: 4, title: '4. Paraan ng Tao', subtitle: 'Relihiyon · Mabubuting gawa · Pilosopiya — hindi nakapagliligtas' },
+  { id: 5, title: '5. Paraan ng Diyos', subtitle: 'Tagapagligtas · Hesus · Krus · Muling Pagkabuhay · Kristo · Pag-akyat · Muling Pagdating' },
+  { id: 6, title: '6. Kristo — Tatlong Tungkulin', subtitle: 'Tunay na Hari · Tunay na Saserdote · Tunay na Propeta' },
+  { id: 7, title: '7. Paglutas sa Pangunahing Suliranin', subtitle: 'Pagsira sa gawa ng Diyablo · Kalayaan · Ang Daan' },
+  { id: 8, title: '8. Paano Maliligtas', subtitle: 'Tanggapin · Ipahayag sa puso at bibig · Buksan ang pinto ng puso · Ngayon' },
+  { id: 9, title: '9. Panalangin ng Pagtanggap', subtitle: 'Panalangin upang tanggapin si Hesukristo bilang Panginoon ng puso' },
+  { id: 10, title: '10. Mga Pagpapala ng Naligtas', subtitle: 'Pananahanan ng Espiritu · Patnubay · Kapangyarihan · Tulong ng Anghel · Nakatali si Satanas · Mamamayan ng Langit · Pang-mundong Ebanghelisasyon' },
+  { id: 11, title: 'Dakilang Utos', subtitle: 'Sanggunian · Mat 28 · Mar 16 · Mga Gawa 1:8' },
+  { id: 12, title: 'Limang Katiyakan ng Mananampalataya', subtitle: 'Sanggunian · Kaligtasan · Patnubay · Sagot sa panalangin · Kapatawaran · Tagumpay' }
 ])
 
 /** @type {Stage[]} — ខ្មែរ Khmer (titles & subtitles only; verses pending) */
 const stagesKm = buildLocalizedStages([
   { id: 0, title: 'ការចាប់ផ្ដើម — ព្រះ និង មនុស្ស', subtitle: 'ចំណុចចាប់ផ្ដើមនៃផ្លូវសេចក្ដីសង្គ្រោះ · ៣ នាទី' },
-  { id: 1, title: 'មនុស្សដើម', subtitle: 'រូបអង្គ · ព្រះពរ · សម្ព័ន្ធមេត្រី' },
-  { id: 2, title: 'បញ្ហាចម្បង', subtitle: 'អារក្ស · បាប · ការវង្វេង' },
-  { id: 3, title: 'ស្ថានភាពអ្នកមិនជឿ', subtitle: 'កូនអារក្ស · វិញ្ញាណ · ចិត្ត · រាងកាយ · ជីវិតខាងមុខ · វង្ស' },
-  { id: 4, title: 'វិធីរបស់មនុស្ស', subtitle: 'សាសនា · អំពើល្អ · ទស្សនវិជ្ជា — មិនអាចសង្គ្រោះ' },
-  { id: 5, title: 'វិធីរបស់ព្រះ', subtitle: 'អ្នកសង្គ្រោះ · ព្រះយេស៊ូ · ឈើឆ្កាង · ការរស់ឡើងវិញ · ព្រះគ្រីស្ទ · ការយាងឡើង · ការយាងមកវិញ' },
-  { id: 6, title: 'ព្រះគ្រីស្ទ', subtitle: 'ស្ដេចពិត · សង្ឃពិត · ហោរាពិត' },
-  { id: 7, title: 'ការដោះស្រាយបញ្ហាចម្បង', subtitle: 'បំផ្លាញកិច្ចការអារក្ស · ការដោះលែង · ផ្លូវ' },
-  { id: 8, title: 'របៀបទទួលការសង្គ្រោះ', subtitle: 'ទទួល · ប្រកាសដោយចិត្ត និង មាត់ · បើកទ្វារចិត្ត · ឥឡូវនេះ' },
-  { id: 9, title: 'ព្រះពរសម្រាប់អ្នកដែលបានសង្គ្រោះ', subtitle: 'ព្រះវិញ្ញាណគង់នៅ · ការដឹកនាំ · កិច្ចការ · ទេវតាជួយ · អារក្សត្រូវចង · សញ្ជាតិស្ថានសួគ៌ · ផ្សាយដំណឹងល្អដល់ពិភពលោក' },
-  { id: 10, title: 'បទបញ្ជាដ៏ឧត្ដម', subtitle: 'ម៉ាថាយ ២៨ · ម៉ាកុស ១៦ · កិច្ចការ ១:៨' },
-  { id: 11, title: 'ការជឿជាក់ ៥ យ៉ាងរបស់អ្នកជឿ', subtitle: 'សេចក្ដីសង្គ្រោះ · ការដឹកនាំ · ការឆ្លើយតបការអធិស្ឋាន · ការអភ័យទោស · ជ័យជម្នះ' },
-  { id: 12, title: 'ការអធិស្ឋានទទួលយក', subtitle: 'ការអធិស្ឋានដើម្បីទទួលព្រះយេស៊ូគ្រីស្ទជាព្រះអម្ចាស់នៃចិត្ត' }
+  { id: 1, title: '1. មនុស្សដើម', subtitle: 'រូបអង្គ · ព្រះពរ · ការថ្វាយបង្គំ និង សរសើរតម្កើង · សម្ព័ន្ធមេត្រី' },
+  { id: 2, title: '2. បញ្ហាចម្បង', subtitle: 'អារក្ស · បាប · ការវង្វេង' },
+  { id: 3, title: '3. ស្ថានភាពអ្នកមិនជឿ', subtitle: 'កូនអារក្ស · វិញ្ញាណ · ចិត្ត · រាងកាយ · ជីវិតខាងមុខ · វង្ស' },
+  { id: 4, title: '4. វិធីរបស់មនុស្ស', subtitle: 'សាសនា · អំពើល្អ · ទស្សនវិជ្ជា — មិនអាចសង្គ្រោះ' },
+  { id: 5, title: '5. វិធីរបស់ព្រះ', subtitle: 'អ្នកសង្គ្រោះ · ព្រះយេស៊ូ · ឈើឆ្កាង · ការរស់ឡើងវិញ · ព្រះគ្រីស្ទ · ការយាងឡើង · ការយាងមកវិញ' },
+  { id: 6, title: '6. ព្រះគ្រីស្ទ — តួនាទីបី', subtitle: 'ស្ដេចពិត · សង្ឃពិត · ហោរាពិត' },
+  { id: 7, title: '7. ការដោះស្រាយបញ្ហាចម្បង', subtitle: 'បំផ្លាញកិច្ចការអារក្ស · ការដោះលែង · ផ្លូវ' },
+  { id: 8, title: '8. របៀបទទួលការសង្គ្រោះ', subtitle: 'ទទួល · ប្រកាសដោយចិត្ត និង មាត់ · បើកទ្វារចិត្ត · ឥឡូវនេះ' },
+  { id: 9, title: '9. ការអធិស្ឋានទទួលយក', subtitle: 'ការអធិស្ឋានដើម្បីទទួលព្រះយេស៊ូគ្រីស្ទជាព្រះអម្ចាស់នៃចិត្ត' },
+  { id: 10, title: '10. ព្រះពរសម្រាប់អ្នកដែលបានសង្គ្រោះ', subtitle: 'ព្រះវិញ្ញាណគង់នៅ · ការដឹកនាំ · កិច្ចការ · ទេវតាជួយ · អារក្សត្រូវចង · សញ្ជាតិស្ថានសួគ៌ · ផ្សាយដំណឹងល្អដល់ពិភពលោក' },
+  { id: 11, title: 'បទបញ្ជាដ៏ឧត្ដម', subtitle: 'សេចក្ដីយោង · ម៉ាថាយ ២៨ · ម៉ាកុស ១៦ · កិច្ចការ ១:៨' },
+  { id: 12, title: 'ការជឿជាក់ ៥ យ៉ាងរបស់អ្នកជឿ', subtitle: 'សេចក្ដីយោង · សេចក្ដីសង្គ្រោះ · ការដឹកនាំ · ការឆ្លើយតបការអធិស្ឋាន · ការអភ័យទោស · ជ័យជម្នះ' }
 ])
 
 /* ============================================================
