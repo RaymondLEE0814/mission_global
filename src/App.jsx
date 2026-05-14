@@ -3,6 +3,7 @@ import Card from './components/Card.jsx'
 import MiniMap from './components/MiniMap.jsx'
 import ProgressBar from './components/ProgressBar.jsx'
 import LanguageToggle from './components/LanguageToggle.jsx'
+import FontSizeToggle from './components/FontSizeToggle.jsx'
 import {
   getStages,
   getUIText,
@@ -11,6 +12,14 @@ import {
 } from './data/salvationWay.js'
 
 const SWIPE_THRESHOLD = 60
+const TEXT_SCALE_KEY = 'salvation-way-text-scale'
+
+function readSavedTextScale() {
+  if (typeof window === 'undefined') return 1
+  const raw = parseFloat(window.localStorage.getItem(TEXT_SCALE_KEY))
+  if (!Number.isFinite(raw)) return 1
+  return Math.min(1.6, Math.max(0.8, raw))
+}
 
 export default function App() {
   const [language, setLanguage] = useState('ko')
@@ -18,6 +27,16 @@ export default function App() {
   const [revealedCount, setRevealedCount] = useState(1)
   const [direction, setDirection] = useState('forward')
   const [shakeBtn, setShakeBtn] = useState(null)
+  const [textScale, setTextScale] = useState(readSavedTextScale)
+
+  useEffect(() => {
+    document.documentElement.style.setProperty('--text-scale', String(textScale))
+    try {
+      window.localStorage.setItem(TEXT_SCALE_KEY, String(textScale))
+    } catch {
+      // ignore storage errors (private mode / disabled storage)
+    }
+  }, [textScale])
 
   const stages = useMemo(() => getStages(language), [language])
   const ui = useMemo(() => getUIText(language), [language])
@@ -125,6 +144,14 @@ export default function App() {
           <span className="brand-subtitle">{ui.appSubtitle}</span>
         </div>
         <div className="top-bar-right">
+          <FontSizeToggle
+            scale={textScale}
+            onChange={setTextScale}
+            label={ui.fontSizeLabel}
+            smallerLabel={ui.fontSmaller}
+            largerLabel={ui.fontLarger}
+            resetLabel={ui.fontReset}
+          />
           <LanguageToggle
             current={language}
             onChange={setLanguage}

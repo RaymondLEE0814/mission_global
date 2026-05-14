@@ -310,9 +310,22 @@ const stagesKo = [
       {
         reference: '결단의 기도',
         label: '함께 따라 읽기',
-        text: `살아계신 하나님 /  저는 죄인 입니다 / 마귀에 속아 하나님을 떠났습니다./지금까지 내 마음대로 내 뜻대로/
-고통 속에 살아왔습니다.  지금 이 시간에 제 마음에 문을 활짝 열고./예수님께서 십자가에서 죽으시고/ 부활 하신 그리스도이심을 믿습니다./ 마귀의 머리를 박살 내시고 / 나의 모든 죄를 용서 하시고 / 하나님 만나는 길을 여신 예수 그리스도를 제 마음속에 주인으로 영접 합니다 / 지금 성령으로 / 제 마음속에 들어오셔서 저를 하나님 자녀로 삼아 주시고 / 참 행복을 누리며 살게 해주세요 / 진리의 성령 께서 저를 인도하시고 / 역사해 주옵소서
-/예수 그리스도의 이름으로 기도합니다. 아멘`
+        text: `살아계신 하나님
+저는 죄인 입니다
+마귀에 속아 하나님을 떠났습니다.
+지금까지 내 마음대로 내 뜻대로
+고통 속에 살아왔습니다.  지금 이 시간에 제 마음에 문을 활짝 열고.
+예수님께서 십자가에서 죽으시고
+부활 하신 그리스도이심을 믿습니다.
+마귀의 머리를 박살 내시고
+나의 모든 죄를 용서 하시고
+하나님 만나는 길을 여신 예수 그리스도를 제 마음속에 주인으로 영접 합니다
+지금 성령으로
+제 마음속에 들어오셔서 저를 하나님 자녀로 삼아 주시고
+참 행복을 누리며 살게 해주세요
+진리의 성령 께서 저를 인도하시고
+역사해 주옵소서
+예수 그리스도의 이름으로 기도합니다. 아멘`
       },
       {
         reference: '축복의 메시지',
@@ -885,11 +898,10 @@ In the name of Jesus Christ I pray. Amen.`
 ]
 
 /**
- * Helper — 영문(stagesEn)의 verses + crossPos 를 그대로 재사용해서
- * 다른 언어의 stages 를 빠르게 합성한다. 각 언어는 title/subtitle 만 제공한다.
- *
- * 본문(verses) 자체는 영문 fallback 이며, 카드 상단에 해당 언어의
- * `translationPending` 배지가 표시되어 사용자가 임시 영문 표시임을 인지하게 한다.
+ * Helper — 다른 언어의 stages 합성. crossPos 는 영문판(stagesEn)에서 가져오고,
+ * title/subtitle 는 각 언어가 제공한다. verses 는 옵션:
+ *   - 제공 시(예: 인도네시아어 정식 번역) 그 verses 를 사용
+ *   - 미제공 시 영문판(stagesEn) verses 로 fallback 후 'translationPending' 배지 노출
  */
 const buildLocalizedStages = (titles) =>
   titles.map((t, i) => ({
@@ -897,41 +909,826 @@ const buildLocalizedStages = (titles) =>
     title: t.title,
     subtitle: t.subtitle,
     crossPos: stagesEn[i].crossPos,
-    verses: stagesEn[i].verses
+    verses: t.verses ?? stagesEn[i].verses
   }))
 
-/** @type {Stage[]} — Bahasa Indonesia (titles & subtitles only; verses pending) */
+/**
+ * @type {Stage[]} — Bahasa Indonesia
+ *
+ * Best-effort translation in standard Indonesian Bible vocabulary (Terjemahan Baru
+ * style). Verify against an authoritative Indonesian Bible (LAI Alkitab Terjemahan
+ * Baru) before production use with native Indonesian audiences.
+ */
 const stagesId = buildLocalizedStages([
-  { id: 0, title: 'Awal — Tuhan dan Manusia', subtitle: 'Titik permulaan Jalan Keselamatan · 3 Menit' },
-  { id: 1, title: '1. Manusia Asli', subtitle: 'Gambar · Berkat · Penyembahan & Pujian · Perjanjian' },
-  { id: 2, title: '2. Masalah Pokok', subtitle: 'Iblis · Dosa · Kepergian' },
-  { id: 3, title: '3. Keadaan Orang yang Tidak Percaya', subtitle: 'Anak Iblis · Roh · Jiwa · Tubuh · Akhirat · Keturunan' },
-  { id: 4, title: '4. Cara Manusia', subtitle: 'Agama · Amal · Filsafat tidak menyelamatkan' },
-  { id: 5, title: '5. Cara Tuhan', subtitle: 'Penyelamat · Yesus · Salib · Kebangkitan · Kristus · Kenaikan · Kedatangan Kembali' },
-  { id: 6, title: '6. Kristus — Tiga Jabatan', subtitle: 'Raja Sejati · Imam Sejati · Nabi Sejati' },
-  { id: 7, title: '7. Penyelesaian Masalah Pokok', subtitle: 'Membinasakan pekerjaan Iblis · Pembebasan · Sang Jalan' },
-  { id: 8, title: '8. Bagaimana Memperoleh Keselamatan', subtitle: 'Menerima · Mengaku dengan hati & mulut · Membuka pintu hati · Sekarang' },
-  { id: 9, title: '9. Doa Penerimaan', subtitle: 'Doa keputusan untuk menerima Yesus Kristus sebagai Tuhan dalam hati' },
-  { id: 10, title: '10. Berkat bagi yang Diselamatkan', subtitle: 'Roh Kudus diam · Pimpinan · Pekerjaan · Pertolongan malaikat · Iblis terikat · Kewargaan sorga · Penginjilan dunia' },
-  { id: 11, title: 'Amanat Agung', subtitle: 'Referensi · Mat 28 · Mrk 16 · Kis 1:8' },
-  { id: 12, title: 'Lima Keyakinan Orang Percaya', subtitle: 'Referensi · Keselamatan · Pimpinan · Doa terjawab · Pengampunan · Kemenangan' }
+  {
+    id: 0,
+    title: 'Awal — Tuhan dan Manusia',
+    subtitle: 'Titik permulaan Jalan Keselamatan · 3 Menit',
+    verses: [
+      {
+        reference: 'Kej 1:1',
+        label: 'Allah',
+        text: 'Pada mulanya Allah menciptakan langit dan bumi.'
+      },
+      {
+        reference: 'Kej 2:7',
+        label: 'Manusia',
+        text:
+          'TUHAN Allah membentuk manusia itu dari debu tanah dan menghembuskan nafas hidup ke dalam hidungnya; demikianlah manusia itu menjadi makhluk yang hidup.'
+      }
+    ]
+  },
+  {
+    id: 1,
+    title: '1. Manusia Asli',
+    subtitle: 'Gambar · Berkat · Penyembahan & Pujian · Perjanjian',
+    verses: [
+      {
+        reference: 'Kej 1:27',
+        label: 'Gambar',
+        text:
+          'Maka Allah menciptakan manusia itu menurut gambar-Nya, menurut gambar Allah diciptakan-Nya dia; laki-laki dan perempuan diciptakan-Nya mereka.'
+      },
+      {
+        reference: 'Kej 1:28',
+        label: 'Berkat',
+        text:
+          'Allah memberkati mereka, lalu Allah berfirman kepada mereka: "Beranakcuculah dan bertambah banyak; penuhilah bumi dan taklukkanlah itu, berkuasalah atas ikan-ikan di laut dan burung-burung di udara dan atas segala binatang yang merayap di bumi."'
+      },
+      {
+        reference: 'Kej 2:1~2',
+        label: 'Penyembahan & Pujian',
+        text:
+          '1 Demikianlah diselesaikan langit dan bumi dan segala isinya. 2 Ketika Allah pada hari ketujuh telah menyelesaikan pekerjaan yang dibuat-Nya itu, berhentilah Ia pada hari ketujuh dari segala pekerjaan yang telah dibuat-Nya itu.'
+      },
+      {
+        reference: 'Kej 2:17',
+        label: 'Perjanjian',
+        text:
+          'tetapi pohon pengetahuan tentang yang baik dan yang jahat itu, janganlah kaumakan buahnya, sebab pada hari engkau memakannya, pastilah engkau mati.'
+      }
+    ]
+  },
+  {
+    id: 2,
+    title: '2. Masalah Pokok',
+    subtitle: 'Iblis · Dosa · Kepergian',
+    verses: [
+      {
+        reference: 'Kej 3:1~5',
+        label: 'Iblis',
+        text:
+          '1 Adapun ular ialah yang paling cerdik dari segala binatang di darat yang dijadikan oleh TUHAN Allah. Ular itu berkata kepada perempuan itu: "Tentulah Allah berfirman: Semua pohon dalam taman ini jangan kamu makan buahnya, bukan?" 2 Lalu sahut perempuan itu kepada ular itu: "Buah pohon-pohonan dalam taman ini boleh kami makan, 3 tetapi tentang buah pohon yang ada di tengah-tengah taman, Allah berfirman: Jangan kamu makan ataupun raba buah itu, nanti kamu mati." 4 Tetapi ular itu berkata kepada perempuan itu: "Sekali-kali kamu tidak akan mati, 5 tetapi Allah mengetahui, bahwa pada waktu kamu memakannya matamu akan terbuka, dan kamu akan menjadi seperti Allah, tahu tentang yang baik dan yang jahat."'
+      },
+      {
+        reference: 'Kej 3:6',
+        label: 'Dosa',
+        text:
+          'Perempuan itu melihat, bahwa buah pohon itu baik untuk dimakan dan sedap kelihatannya, lagipula pohon itu menarik hati karena memberi pengertian. Lalu ia mengambil dari buahnya dan dimakannya dan diberikannya juga kepada suaminya yang bersama-sama dengan dia, dan suaminya pun memakannya.'
+      },
+      {
+        reference: 'Kej 3:7~10',
+        label: 'Kepergian',
+        text:
+          '7 Maka terbukalah mata mereka berdua dan mereka tahu, bahwa mereka telanjang; lalu mereka menyemat daun pohon ara dan membuat cawat. 8 Ketika mereka mendengar bunyi langkah TUHAN Allah, yang berjalan-jalan dalam taman itu pada waktu hari sejuk, bersembunyilah manusia dan isterinya itu terhadap TUHAN Allah di antara pohon-pohonan dalam taman. 9 Tetapi TUHAN Allah memanggil manusia itu dan berfirman kepadanya: "Di manakah engkau?" 10 Ia menjawab: "Ketika aku mendengar, bahwa Engkau ada dalam taman ini, aku menjadi takut, karena aku telanjang; sebab itu aku bersembunyi."'
+      }
+    ]
+  },
+  {
+    id: 3,
+    title: '3. Keadaan Orang yang Tidak Percaya',
+    subtitle: 'Anak Iblis · Roh · Jiwa · Tubuh · Akhirat · Keturunan',
+    verses: [
+      {
+        reference: 'Yoh 8:44',
+        label: 'Anak Iblis (Nasib · Hamba Iblis)',
+        text:
+          'Iblislah yang menjadi bapamu dan kamu ingin melakukan keinginan-keinginan bapamu. Ia adalah pembunuh manusia sejak semula dan tidak hidup dalam kebenaran, sebab di dalam dia tidak ada kebenaran. Apabila ia berkata dusta, ia berkata atas kehendaknya sendiri, sebab ia adalah pendusta dan bapa segala dusta.'
+      },
+      {
+        reference: 'Efe 2:2~3',
+        label: 'Masalah Rohani (Berhala · Takhayul · Ramalan)',
+        text:
+          '2 Kamu hidup di dalamnya, karena kamu mengikuti jalan dunia ini, karena kamu mentaati penguasa kerajaan angkasa, yaitu roh yang sekarang sedang bekerja di antara orang-orang durhaka. 3 Sebenarnya dahulu kami semua juga terhitung di antara mereka, ketika kami hidup di dalam hawa nafsu daging dan menuruti kehendak daging dan pikiran kami yang jahat. Pada dasarnya kami adalah orang-orang yang harus dimurkai, sama seperti mereka yang lain.'
+      },
+      {
+        reference: 'Mat 11:28',
+        label: 'Masalah Jiwa (Cemas · Kosong · Depresi)',
+        text:
+          'Marilah kepada-Ku, semua yang letih lesu dan berbeban berat, Aku akan memberi kelegaan kepadamu.'
+      },
+      {
+        reference: 'Kis 8:4~8',
+        label: 'Masalah Tubuh (Lumpuh · Kanker · Penyakit tak tersembuhkan)',
+        text:
+          '4 Mereka yang tersebar itu menjelajah seluruh negeri itu sambil memberitakan Injil. 5 Dan Filipus pergi ke suatu kota di Samaria dan memberitakan Mesias kepada orang-orang di situ. 6 Ketika orang banyak itu mendengar pemberitaan Filipus dan melihat tanda-tanda yang diadakannya, mereka semua dengan bulat hati menerima apa yang diberitakannya itu. 7 Sebab dari banyak orang yang kerasukan roh jahat keluarlah roh-roh itu sambil berseru dengan suara keras, dan banyak juga orang lumpuh dan orang timpang yang disembuhkan. 8 Maka sangatlah besar sukacita dalam kota itu.'
+      },
+      {
+        reference: 'Luk 16:19~31',
+        label: 'Masalah Akhirat (Penghakiman · Neraka)',
+        text:
+          '19 Ada seorang kaya yang selalu berpakaian jubah ungu dan kain halus, dan setiap hari ia bersukaria dalam kemewahan. 20 Dan ada seorang pengemis bernama Lazarus, badannya penuh dengan borok, berbaring dekat pintu rumah orang kaya itu, 21 dan ingin menghilangkan laparnya dengan apa yang jatuh dari meja orang kaya itu. Malahan anjing-anjing datang dan menjilat boroknya. 22 Kemudian matilah orang miskin itu, lalu dibawa oleh malaikat-malaikat ke pangkuan Abraham. Orang kaya itu juga mati, lalu dikubur. 23 Dan sementara ia menderita sengsara di alam maut ia memandang ke atas, dan dari jauh dilihatnya Abraham, dan Lazarus duduk di pangkuannya. 24 Lalu ia berseru, katanya: Bapa Abraham, kasihanilah aku. Suruhlah Lazarus, supaya ia mencelupkan ujung jarinya ke dalam air dan menyejukkan lidahku, sebab aku sangat kesakitan dalam nyala api ini. 25 Tetapi Abraham berkata: Anak, ingatlah, bahwa engkau telah menerima segala yang baik sewaktu hidupmu, sedangkan Lazarus segala yang buruk. Sekarang ia mendapat hiburan dan engkau sangat menderita. 26 Selain dari pada itu di antara kami dan engkau terbentang jurang yang tak terseberangi, supaya mereka yang mau pergi dari sini kepadamu ataupun mereka yang mau datang dari situ kepada kami tidak dapat menyeberang. 27 Kata orang itu: Kalau demikian, aku minta kepadamu, bapa, supaya engkau menyuruh dia ke rumah ayahku, 28 sebab masih ada lima orang saudaraku, supaya ia memperingati mereka dengan sungguh-sungguh, agar mereka jangan masuk kelak ke dalam tempat penderitaan ini. 29 Tetapi kata Abraham: Ada pada mereka kesaksian Musa dan kesaksian para nabi; baiklah mereka mendengarkan kesaksian itu. 30 Jawab orang itu: Tidak, bapa Abraham, tetapi jika ada seorang yang datang dari antara orang mati kepada mereka, mereka akan bertobat. 31 Kata Abraham kepadanya: Jika mereka tidak mendengarkan kesaksian Musa dan para nabi, mereka tidak juga akan mau diyakinkan, sekalipun ada seorang yang bangkit dari antara orang mati.'
+      },
+      {
+        reference: 'Kel 20:4~5',
+        label: 'Masalah Keturunan (Warisan rohani & jasmani)',
+        text:
+          '4 Jangan membuat bagimu patung yang menyerupai apapun yang ada di langit di atas, atau yang ada di bumi di bawah, atau yang ada di dalam air di bawah bumi. 5 Jangan sujud menyembah kepadanya atau beribadah kepadanya, sebab Aku, TUHAN, Allahmu, adalah Allah yang cemburu, yang membalaskan kesalahan bapa kepada anak-anaknya, kepada keturunan yang ketiga dan keempat dari orang-orang yang membenci Aku,'
+      }
+    ]
+  },
+  {
+    id: 4,
+    title: '4. Cara Manusia',
+    subtitle: 'Agama · Amal · Filsafat tidak menyelamatkan',
+    verses: [
+      {
+        reference: 'Kis 4:12',
+        label: 'Agama',
+        text:
+          'Dan keselamatan tidak ada di dalam siapapun juga selain di dalam Dia, sebab di bawah kolong langit ini tidak ada nama lain yang diberikan kepada manusia yang olehnya kita dapat diselamatkan.'
+      },
+      {
+        reference: 'Yes 64:6',
+        label: 'Amal',
+        text:
+          'Demikianlah kami sekalian seperti seorang najis dan segala kesalehan kami seperti kain kotor; kami sekalian menjadi layu seperti daun dan kami lenyap oleh kejahatan kami seperti daun dilenyapkan angin.'
+      },
+      {
+        reference: 'Kol 2:8',
+        label: 'Filsafat',
+        text:
+          'Hati-hatilah, supaya jangan ada yang menawan kamu dengan filsafatnya yang kosong dan palsu menurut ajaran turun-temurun dan roh-roh dunia, tetapi tidak menurut Kristus.'
+      }
+    ]
+  },
+  {
+    id: 5,
+    title: '5. Cara Tuhan',
+    subtitle: 'Penyelamat · Yesus · Salib · Kebangkitan · Kristus · Kenaikan · Kedatangan Kembali',
+    verses: [
+      {
+        reference: 'Yoh 3:16',
+        label: 'Penyelamat',
+        text:
+          'Karena begitu besar kasih Allah akan dunia ini, sehingga Ia telah mengaruniakan Anak-Nya yang tunggal, supaya setiap orang yang percaya kepada-Nya tidak binasa, melainkan beroleh hidup yang kekal.'
+      },
+      {
+        reference: 'Mat 1:21',
+        label: 'Yesus',
+        text:
+          'Ia akan melahirkan anak laki-laki dan engkau akan menamakan Dia Yesus, karena Dialah yang akan menyelamatkan umat-Nya dari dosa mereka.'
+      },
+      {
+        reference: 'Yoh 19:30',
+        label: 'Salib',
+        text:
+          'Sesudah Yesus meminum anggur asam itu, berkatalah Ia: "Sudah selesai." Lalu Ia menundukkan kepala-Nya dan menyerahkan nyawa-Nya.'
+      },
+      {
+        reference: '1 Kor 15:3~4',
+        label: 'Kebangkitan',
+        text:
+          '3 Sebab yang sangat penting telah kusampaikan kepadamu, yaitu apa yang telah kuterima sendiri, ialah bahwa Kristus telah mati karena dosa-dosa kita, sesuai dengan Kitab Suci, 4 bahwa Ia telah dikuburkan, dan bahwa Ia telah dibangkitkan, pada hari yang ketiga, sesuai dengan Kitab Suci;'
+      },
+      {
+        reference: 'Mat 16:16',
+        label: 'Kristus',
+        text:
+          'Maka jawab Simon Petrus: "Engkau adalah Mesias, Anak Allah yang hidup!"'
+      },
+      {
+        reference: 'Kis 1:9~10',
+        label: 'Kenaikan',
+        text:
+          '9 Sesudah Ia mengatakan demikian, terangkatlah Ia disaksikan oleh mereka, dan awan menutup-Nya dari pandangan mereka. 10 Ketika mereka sedang menatap ke langit waktu Ia naik itu, tiba-tiba berdirilah dua orang yang berpakaian putih dekat mereka,'
+      },
+      {
+        reference: 'Why 22:20',
+        label: 'Kedatangan Kembali',
+        text:
+          '20 Ia, yang memberi kesaksian tentang semuanya ini, berfirman: "Ya, Aku datang segera!" Amin, datanglah, Tuhan Yesus!'
+      }
+    ]
+  },
+  {
+    id: 6,
+    title: '6. Kristus — Tiga Jabatan',
+    subtitle: 'Raja Sejati · Imam Sejati · Nabi Sejati',
+    verses: [
+      {
+        reference: 'Ibr 2:14~15',
+        label: 'Raja Sejati',
+        text:
+          '14 Karena anak-anak itu adalah anak-anak dari darah dan daging, maka Ia juga menjadi sama dengan mereka dan mendapat bagian dalam keadaan mereka, supaya oleh kematian-Nya Ia memusnahkan dia, yaitu Iblis, yang berkuasa atas maut; 15 dan supaya dengan jalan demikian Ia membebaskan mereka yang seumur hidupnya berada dalam perhambaan oleh karena takutnya kepada maut.'
+      },
+      {
+        reference: 'Ibr 9:11~12',
+        label: 'Imam Sejati',
+        text:
+          '11 Tetapi Kristus telah datang sebagai Imam Besar untuk hal-hal yang baik yang akan datang: Ia telah melintasi kemah yang lebih besar dan yang lebih sempurna, yang bukan dibuat oleh tangan manusia, artinya yang tidak termasuk ciptaan ini; 12 dan Ia telah masuk satu kali untuk selama-lamanya ke dalam tempat yang kudus bukan dengan membawa darah domba jantan dan darah anak lembu, tetapi dengan membawa darah-Nya sendiri. Dan dengan itu Ia telah mendapat kelepasan yang kekal.'
+      },
+      {
+        reference: 'Ibr 10:19~20',
+        label: 'Nabi Sejati',
+        text:
+          '19 Jadi, saudara-saudara, oleh darah Yesus kita sekarang penuh keberanian dapat masuk ke dalam tempat kudus, 20 karena Ia telah membuka jalan yang baru dan yang hidup bagi kita melalui tabir, yaitu diri-Nya sendiri,'
+      }
+    ]
+  },
+  {
+    id: 7,
+    title: '7. Penyelesaian Masalah Pokok',
+    subtitle: 'Membinasakan pekerjaan Iblis · Pembebasan · Sang Jalan',
+    verses: [
+      {
+        reference: '1 Yoh 3:8',
+        label: 'Pekerjaan Iblis',
+        text:
+          'barangsiapa yang tetap berbuat dosa, berasal dari Iblis, sebab Iblis berbuat dosa dari mulanya.'
+      },
+      {
+        reference: 'Rom 8:2',
+        label: 'Pembebasan',
+        text:
+          'Roh, yang memberi hidup telah memerdekakan kamu dalam Kristus dari hukum dosa dan hukum maut.'
+      },
+      {
+        reference: 'Yoh 14:6',
+        label: 'Sang Jalan',
+        text:
+          'Kata Yesus kepadanya: "Akulah jalan dan kebenaran dan hidup. Tidak ada seorangpun yang datang kepada Bapa, kalau tidak melalui Aku."'
+      }
+    ]
+  },
+  {
+    id: 8,
+    title: '8. Bagaimana Memperoleh Keselamatan',
+    subtitle: 'Menerima · Mengaku dengan hati & mulut · Membuka pintu hati · Sekarang',
+    verses: [
+      {
+        reference: 'Yoh 1:12',
+        label: 'Menerima',
+        text:
+          'Tetapi semua orang yang menerima-Nya diberi-Nya kuasa supaya menjadi anak-anak Allah, yaitu mereka yang percaya dalam nama-Nya;'
+      },
+      {
+        reference: 'Rom 10:9~10',
+        label: 'Hati · Mulut · Pengakuan',
+        text:
+          '9 Sebab jika kamu mengaku dengan mulutmu, bahwa Yesus adalah Tuhan, dan percaya dalam hatimu, bahwa Allah telah membangkitkan Dia dari antara orang mati, maka kamu akan diselamatkan. 10 Karena dengan hati orang percaya dan dibenarkan, dan dengan mulut orang mengaku dan diselamatkan.'
+      },
+      {
+        reference: 'Why 3:20',
+        label: 'Membuka pintu hati',
+        text:
+          'Lihat, Aku berdiri di muka pintu dan mengetok; jikalau ada orang yang mendengar suara-Ku dan membukakan pintu, Aku akan masuk mendapatkannya dan Aku makan bersama-sama dengan dia, dan ia bersama-sama dengan Aku.'
+      },
+      {
+        reference: 'Ams 27:1',
+        label: 'Sekarang',
+        text:
+          'Janganlah memuji diri karena esok hari, karena engkau tidak tahu apa yang akan terjadi hari itu.'
+      }
+    ]
+  },
+  {
+    id: 9,
+    title: '9. Doa Penerimaan',
+    subtitle: 'Doa keputusan untuk menerima Yesus Kristus sebagai Tuhan dalam hati',
+    verses: [
+      {
+        reference: 'Doa Keputusan',
+        label: 'Berdoa bersama',
+        text: `Allah yang hidup
+Aku adalah orang berdosa
+Aku tertipu oleh Iblis dan meninggalkan Allah
+Sampai kini aku hidup menurut kemauan dan kehendakku sendiri
+dalam penderitaan.
+
+Pada saat ini aku membuka pintu hatiku lebar-lebar.
+Aku percaya bahwa Yesus mati di kayu salib
+dan bangkit kembali sebagai Kristus.
+
+Yesus Kristus yang menghancurkan kepala Iblis,
+yang mengampuni segala dosaku,
+dan yang membuka jalan untuk bertemu dengan Allah
+kuterima sebagai Tuhan di dalam hatiku.
+
+Sekarang dengan kuasa Roh Kudus
+masuklah ke dalam hatiku,
+jadikanlah aku anak Allah,
+dan biarkanlah aku hidup menikmati kebahagiaan yang sejati.
+
+Biarlah Roh Kebenaran menuntun aku
+dan bekerja di dalam aku.
+
+Dalam nama Yesus Kristus aku berdoa. Amin.`
+      },
+      {
+        reference: 'Kata Berkat',
+        label: 'Permulaan yang baru',
+        text:
+          'Sekarang Anda telah menerima Kristus Yesus sebagai Juruselamat, sehingga melalui kehidupan bersama Allah, Anda akan menjalani hidup yang diberkati oleh-Nya. Setiap hari bacalah firman Allah, dan melalui firman itu temukanlah hidup yang lebih berharga daripada apapun yang dunia tawarkan—yaitu hidup sejati itu sendiri. Saya memberkati dan mendoakan Anda. Saya mengasihi Anda.'
+      }
+    ]
+  },
+  {
+    id: 10,
+    title: '10. Berkat bagi yang Diselamatkan',
+    subtitle: 'Roh Kudus diam · Pimpinan · Pekerjaan · Pertolongan malaikat · Iblis terikat · Kewargaan sorga · Penginjilan dunia',
+    verses: [
+      {
+        reference: '1 Kor 3:16',
+        label: 'Roh Kudus diam',
+        text:
+          'Tidak tahukah kamu, bahwa kamu adalah bait Allah dan bahwa Roh Allah diam di dalam kamu?'
+      },
+      {
+        reference: 'Yoh 14:26~27',
+        label: 'Pimpinan Roh',
+        text:
+          '26 tetapi Penghibur, yaitu Roh Kudus, yang akan diutus oleh Bapa dalam nama-Ku, Dialah yang akan mengajarkan segala sesuatu kepadamu dan akan mengingatkan kamu akan semua yang telah Kukatakan kepadamu. 27 Damai sejahtera Kutinggalkan bagimu. Damai sejahtera-Ku Kuberikan kepadamu, dan apa yang Kuberikan tidak seperti yang diberikan oleh dunia kepadamu. Janganlah gelisah dan gentar hatimu.'
+      },
+      {
+        reference: 'Yoh 14:14',
+        label: 'Pekerjaan Roh',
+        text:
+          'Jika kamu meminta sesuatu kepada-Ku dalam nama-Ku, Aku akan melakukannya.'
+      },
+      {
+        reference: 'Ibr 1:14',
+        label: 'Pertolongan malaikat',
+        text:
+          'Bukankah mereka semua adalah roh-roh yang melayani, yang diutus untuk melayani mereka yang harus memperoleh keselamatan?'
+      },
+      {
+        reference: 'Luk 10:19',
+        label: 'Iblis terikat',
+        text:
+          'Sesungguhnya Aku telah memberikan kuasa kepada kamu untuk menginjak ular dan kalajengking dan kuasa atas kekuatan musuh, sehingga tidak ada yang akan membahayakan kamu.'
+      },
+      {
+        reference: 'Flp 3:20',
+        label: 'Kewargaan sorga',
+        text:
+          'Karena kewargaan kita adalah di dalam sorga, dan dari situ juga kita menantikan Tuhan Yesus Kristus sebagai Juruselamat,'
+      },
+      {
+        reference: 'Kis 1:8',
+        label: 'Penginjilan dunia',
+        text:
+          'Tetapi kamu akan menerima kuasa, kalau Roh Kudus turun ke atas kamu, dan kamu akan menjadi saksi-Ku di Yerusalem dan di seluruh Yudea dan Samaria dan sampai ke ujung bumi.'
+      }
+    ]
+  },
+  {
+    id: 11,
+    title: 'Amanat Agung',
+    subtitle: 'Referensi · Mat 28 · Mrk 16 · Kis 1:8',
+    verses: [
+      {
+        reference: 'Mat 28:16~20',
+        label: '',
+        text:
+          '16 Dan kesebelas murid itu berangkat ke Galilea, ke bukit yang telah ditunjukkan Yesus kepada mereka. 17 Ketika melihat Dia mereka menyembah-Nya, tetapi beberapa orang ragu-ragu. 18 Yesus mendekati mereka dan berkata: "Kepada-Ku telah diberikan segala kuasa di sorga dan di bumi. 19 Karena itu pergilah, jadikanlah semua bangsa murid-Ku dan baptislah mereka dalam nama Bapa dan Anak dan Roh Kudus, 20 dan ajarlah mereka melakukan segala sesuatu yang telah Kuperintahkan kepadamu. Dan ketahuilah, Aku menyertai kamu senantiasa sampai kepada akhir zaman." Amin.'
+      },
+      {
+        reference: 'Mrk 16:15~20',
+        label: '',
+        text:
+          '15 Lalu Ia berkata kepada mereka: "Pergilah ke seluruh dunia, beritakanlah Injil kepada segala makhluk. 16 Siapa yang percaya dan dibaptis akan diselamatkan, tetapi siapa yang tidak percaya akan dihukum. 17 Tanda-tanda ini akan menyertai orang-orang yang percaya: mereka akan mengusir setan-setan demi nama-Ku, mereka akan berbicara dalam bahasa-bahasa yang baru bagi mereka, 18 mereka akan memegang ular, dan sekalipun mereka minum racun maut, mereka tidak akan mendapat celaka; mereka akan meletakkan tangannya atas orang sakit, dan orang itu akan sembuh." 19 Sesudah Tuhan Yesus berbicara demikian kepada mereka, terangkatlah Ia ke sorga, lalu duduk di sebelah kanan Allah. 20 Mereka pun pergilah memberitakan Injil ke segala penjuru, dan Tuhan turut bekerja dan meneguhkan firman itu dengan tanda-tanda yang menyertainya. Amin.'
+      },
+      {
+        reference: 'Kis 1:8',
+        label: '',
+        text:
+          'Tetapi kamu akan menerima kuasa, kalau Roh Kudus turun ke atas kamu, dan kamu akan menjadi saksi-Ku di Yerusalem dan di seluruh Yudea dan Samaria dan sampai ke ujung bumi.'
+      }
+    ]
+  },
+  {
+    id: 12,
+    title: 'Lima Keyakinan Orang Percaya',
+    subtitle: 'Referensi · Keselamatan · Pimpinan · Doa terjawab · Pengampunan · Kemenangan',
+    verses: [
+      {
+        reference: '1 Yoh 5:11~12',
+        label: 'Keyakinan Keselamatan',
+        text:
+          '11 Dan inilah kesaksian itu: Allah telah mengaruniakan hidup yang kekal kepada kita dan hidup itu ada di dalam Anak-Nya. 12 Barangsiapa memiliki Anak, ia memiliki hidup; barangsiapa tidak memiliki Anak Allah, ia tidak memiliki hidup.'
+      },
+      {
+        reference: 'Yoh 14:26~27',
+        label: 'Keyakinan Pimpinan',
+        text:
+          '26 tetapi Penghibur, yaitu Roh Kudus, yang akan diutus oleh Bapa dalam nama-Ku, Dialah yang akan mengajarkan segala sesuatu kepadamu dan akan mengingatkan kamu akan semua yang telah Kukatakan kepadamu. 27 Damai sejahtera Kutinggalkan bagimu. Damai sejahtera-Ku Kuberikan kepadamu, dan apa yang Kuberikan tidak seperti yang diberikan oleh dunia kepadamu. Janganlah gelisah dan gentar hatimu.'
+      },
+      {
+        reference: 'Yoh 14:14',
+        label: 'Keyakinan Doa Terjawab',
+        text:
+          'Jika kamu meminta sesuatu kepada-Ku dalam nama-Ku, Aku akan melakukannya.'
+      },
+      {
+        reference: '1 Yoh 1:9',
+        label: 'Keyakinan Pengampunan',
+        text:
+          'Jika kita mengaku dosa kita, maka Ia adalah setia dan adil, sehingga Ia akan mengampuni segala dosa kita dan menyucikan kita dari segala kejahatan.'
+      },
+      {
+        reference: 'Rom 8:37',
+        label: 'Keyakinan Kemenangan',
+        text:
+          'Tetapi dalam semuanya itu kita lebih dari pada orang-orang yang menang, oleh Dia yang telah mengasihi kita.'
+      }
+    ]
+  }
 ])
 
-/** @type {Stage[]} — Tagalog (titles & subtitles only; verses pending) */
+/**
+ * @type {Stage[]} — Tagalog
+ *
+ * Best-effort translation in standard Tagalog Bible vocabulary (Ang Dating Biblia
+ * 1905 baseline, lightly modernized). Verify against an authoritative Tagalog
+ * Bible (Magandang Balita Biblia / Filipino Standard Version) before production
+ * use with native Filipino audiences.
+ */
 const stagesTl = buildLocalizedStages([
-  { id: 0, title: 'Simula — Diyos at Tao', subtitle: 'Simula ng Daan ng Kaligtasan · 3-Minutong Ebanghelyo' },
-  { id: 1, title: '1. Orihinal na Tao', subtitle: 'Larawan · Pagpapala · Pagsamba at Pagpupuri · Tipan' },
-  { id: 2, title: '2. Pangunahing Suliranin', subtitle: 'Satanas · Kasalanan · Paglayo' },
-  { id: 3, title: '3. Kalagayan ng Hindi Naniniwala', subtitle: 'Anak ng Diyablo · Espirituwal · Pangkaisipan · Pisikal · Walang Hanggan · Henerasyon' },
-  { id: 4, title: '4. Paraan ng Tao', subtitle: 'Relihiyon · Mabubuting gawa · Pilosopiya — hindi nakapagliligtas' },
-  { id: 5, title: '5. Paraan ng Diyos', subtitle: 'Tagapagligtas · Hesus · Krus · Muling Pagkabuhay · Kristo · Pag-akyat · Muling Pagdating' },
-  { id: 6, title: '6. Kristo — Tatlong Tungkulin', subtitle: 'Tunay na Hari · Tunay na Saserdote · Tunay na Propeta' },
-  { id: 7, title: '7. Paglutas sa Pangunahing Suliranin', subtitle: 'Pagsira sa gawa ng Diyablo · Kalayaan · Ang Daan' },
-  { id: 8, title: '8. Paano Maliligtas', subtitle: 'Tanggapin · Ipahayag sa puso at bibig · Buksan ang pinto ng puso · Ngayon' },
-  { id: 9, title: '9. Panalangin ng Pagtanggap', subtitle: 'Panalangin upang tanggapin si Hesukristo bilang Panginoon ng puso' },
-  { id: 10, title: '10. Mga Pagpapala ng Naligtas', subtitle: 'Pananahanan ng Espiritu · Patnubay · Kapangyarihan · Tulong ng Anghel · Nakatali si Satanas · Mamamayan ng Langit · Pang-mundong Ebanghelisasyon' },
-  { id: 11, title: 'Dakilang Utos', subtitle: 'Sanggunian · Mat 28 · Mar 16 · Mga Gawa 1:8' },
-  { id: 12, title: 'Limang Katiyakan ng Mananampalataya', subtitle: 'Sanggunian · Kaligtasan · Patnubay · Sagot sa panalangin · Kapatawaran · Tagumpay' }
+  {
+    id: 0,
+    title: 'Simula — Diyos at Tao',
+    subtitle: 'Simula ng Daan ng Kaligtasan · 3-Minutong Ebanghelyo',
+    verses: [
+      {
+        reference: 'Gen 1:1',
+        label: 'Diyos',
+        text: `Sa pasimula ay nilikha ng Diyos ang langit at ang lupa.`
+      },
+      {
+        reference: 'Gen 2:7',
+        label: 'Tao',
+        text: `At nilalang ng PANGINOONG Diyos ang tao mula sa alabok ng lupa, at hininga niya sa kanyang ilong ang hininga ng buhay; at ang tao ay naging kaluluwang may buhay.`
+      }
+    ]
+  },
+  {
+    id: 1,
+    title: '1. Orihinal na Tao',
+    subtitle: 'Larawan · Pagpapala · Pagsamba at Pagpupuri · Tipan',
+    verses: [
+      {
+        reference: 'Gen 1:27',
+        label: 'Larawan',
+        text: `Nilalang nga ng Diyos ang tao ayon sa kanyang sariling larawan, ayon sa larawan ng Diyos siya nilalang; lalaki at babae sila nilalang.`
+      },
+      {
+        reference: 'Gen 1:28',
+        label: 'Pagpapala',
+        text: `At sila'y binasbasan ng Diyos, at sinabi sa kanila ng Diyos, "Magpalaanakin kayo at magpakarami, kalatan ninyo ang lupa, at supilin ninyo iyon; at magkaroon kayo ng kapangyarihan sa mga isda sa dagat, at sa mga ibon sa himpapawid, at sa bawat hayop na gumagalaw sa ibabaw ng lupa."`
+      },
+      {
+        reference: 'Gen 2:1~2',
+        label: 'Pagsamba at Pagpupuri',
+        text: `1 Natapos nga ang langit at ang lupa, at ang lahat ng nilalaman ng mga ito. 2 At nang ikapitong araw ay tinapos ng Diyos ang kanyang gawang ginawa; at siya'y nagpahinga sa ikapitong araw mula sa lahat ng kanyang gawang ginawa.`
+      },
+      {
+        reference: 'Gen 2:17',
+        label: 'Tipan',
+        text: `subalit sa puno ng pagkakilala ng mabuti at masama ay huwag kang kakain; sapagkat sa araw na kumain ka niyaon ay walang pagsalang mamamatay ka.`
+      }
+    ]
+  },
+  {
+    id: 2,
+    title: '2. Pangunahing Suliranin',
+    subtitle: 'Satanas · Kasalanan · Paglayo',
+    verses: [
+      {
+        reference: 'Gen 3:1~5',
+        label: 'Satanas',
+        text: `1 Ang ahas nga ay siyang pinakatuso sa lahat ng mga hayop sa parang na ginawa ng PANGINOONG Diyos. At sinabi nito sa babae, "Talaga bang sinabi ng Diyos: Huwag kayong kumain ng bunga ng alinmang puno sa halamanan?" 2 Sumagot ang babae sa ahas, "Maaari kaming kumain ng bunga ng mga puno sa halamanan, 3 ngunit tungkol sa bunga ng punong nasa gitna ng halamanan, sinabi ng Diyos: Huwag ninyong kakanin ni hihipuin man, baka kayo'y mamatay." 4 Ngunit sinabi ng ahas sa babae, "Hindi kayo tunay na mamamatay; 5 sapagkat alam ng Diyos na sa araw na inyong kainin ito, mabubuksan ang inyong mga mata, at kayo'y magiging katulad ng Diyos, na nakakaalam ng mabuti at masama."`
+      },
+      {
+        reference: 'Gen 3:6',
+        label: 'Kasalanan',
+        text: `Nang makita ng babae na ang puno ay mabuting kainin, at na ito'y nakalulugod sa mga mata, at na ang puno ay kanais-nais upang magpadunong sa isa, ay pumitas siya ng bunga niyon at kumain; at binigyan din niya ng bunga ang kanyang asawa na kasama niya, at ito'y kumain rin.`
+      },
+      {
+        reference: 'Gen 3:7~10',
+        label: 'Paglayo',
+        text: `7 At nadilat ang mga mata nilang dalawa, at nalaman nilang sila'y hubad; at sila'y nagtagni ng mga dahon ng igos, at gumawa ng pantakip sa kanilang sarili. 8 At narinig nila ang tinig ng PANGINOONG Diyos na lumalakad sa halamanan sa ginhawa ng araw, at ang lalaki at ang kanyang asawa ay nagtago sa harapan ng PANGINOONG Diyos sa gitna ng mga puno sa halamanan. 9 At tinawag ng PANGINOONG Diyos ang lalaki at sinabi sa kanya, "Nasaan ka?" 10 At sinabi niya, "Narinig ko ang iyong tinig sa halamanan, at ako'y natakot sapagkat ako'y hubad; kaya't ako'y nagtago."`
+      }
+    ]
+  },
+  {
+    id: 3,
+    title: '3. Kalagayan ng Hindi Naniniwala',
+    subtitle: 'Anak ng Diyablo · Espirituwal · Pangkaisipan · Pisikal · Walang Hanggan · Henerasyon',
+    verses: [
+      {
+        reference: 'Juan 8:44',
+        label: 'Anak ng Diyablo (Kapalaran · Alipin ni Satanas)',
+        text: `Kayo'y sa inyong amang diyablo, at ang mga pita ng inyong ama ay inyong gagawin. Siya'y mamamatay-tao buhat ng pasimula, at hindi siya nananatili sa katotohanan, dahil walang katotohanan sa kanya. Kapag siya'y nagsasalita ng kasinungalingan, sinasalita niya ang nasa kanyang sarili; sapagkat siya'y sinungaling, at ama ng kasinungalingan.`
+      },
+      {
+        reference: 'Efe 2:2~3',
+        label: 'Suliraning Espirituwal (Diyus-diyusan · Pamahiin · Hula)',
+        text: `2 na inyo ngang nilakaran nang una, ayon sa lakad ng sanlibutang ito, ayon sa pinuno ng kapamahalaan ng hangin, ng espiritu na ngayo'y gumagawa sa mga anak ng pagsuway; 3 sa kalagitnaan nila tayong lahat ay nabuhay nang una sa mga pita ng ating laman, na gumagawa ng mga nais ng laman at ng pag-iisip, at noo'y mga anak ng kapootan tulad ng iba.`
+      },
+      {
+        reference: 'Mat 11:28',
+        label: 'Suliraning Pangkaisipan (Pagkabalisa · Kawalan · Lumbay)',
+        text: `Lumapit kayo sa akin, kayong lahat na nagsisipagpagal at nabibigatang lubha, at kayo'y aking papagpapahingahin.`
+      },
+      {
+        reference: 'Gawa 8:4~8',
+        label: 'Suliraning Pisikal (Lumpo · Kanser · Sakit na walang lunas)',
+        text: `4 Ang mga nangagsipangalat nga ay nagsipangaral sa buong dakong pinaroroonan nila ng salita. 5 At lumusong si Felipe sa lunsod ng Samaria, at ipinangaral sa kanila si Cristo. 6 At ang mga karamihan ay nakatuong masid sa mga bagay na sinasalita ni Felipe, sa pagkikinig at pagkakita nila ng mga tanda na ginagawa niya. 7 Sapagkat lumabas sa marami sa mga inalihan ang mga karumal-dumal na espiritu, na nagsisigaw nang malakas na tinig; at marami sa mga lumpo at pilay ang gumaling. 8 At nagkaroon ng malaking kagalakan sa lunsod na yaon.`
+      },
+      {
+        reference: 'Luc 16:19~31',
+        label: 'Suliraning Walang Hanggan (Paghatol · Impierno)',
+        text: `19 May isang taong mayaman na nagdaramit ng kulay-ube at maselang lino, at araw-araw siya'y namumuhay sa karangyaan. 20 At isang pulubi na ang pangala'y Lazaro ay inilagay sa kanyang pintuan, na puno ng mga sugat, 21 at hinahangad niyang mapakain ng mga mumo na nahuhulog mula sa hapag ng mayaman; tunay nga, ang mga aso man ay lumalapit at hinihimuran ang kanyang mga sugat. 22 At namatay ang pulubi, at dinala siya ng mga anghel sa sinapupunan ni Abraham; namatay rin ang mayaman, at inilibing. 23 At sa Hades, na nasa pagdurusa, itinaas niya ang kanyang mga mata at nakita niya sa malayo si Abraham, at si Lazaro sa kanyang sinapupunan. 24 At sumigaw siya at sinabi, "Amang Abraham, mahabag kayo sa akin at suguin ninyo si Lazaro upang maitubog ang dulo ng kanyang daliri sa tubig at palamigin ang aking dila; sapagkat ako'y nagdurusa sa apoy na ito." 25 Datapuwa't sinabi ni Abraham, "Anak, alalahanin mong sa iyong buhay ay tinanggap mo ang iyong mabubuting bagay, at si Lazaro naman ay ang masasama; ngunit ngayon ay inaaliw siya rito, at ikaw ay nagdurusa. 26 At sa lahat ng ito, sa pagitan namin at ninyo ay may malaking bangin na nakaayos, upang ang mga magnais bumagtas mula rito patungo sa inyo ay hindi maaari; ni walang sinumang makakatawid mula riyan paparito sa amin." 27 At sinabi niya, "Aking ipinamamanhik nga sa iyo, ama, na suguin mo siya sa bahay ng aking ama, 28 sapagkat may limang kapatid akong lalaki, upang patotohanan niya sa kanila, baka silang lahat ay pumarito rin sa lugar na ito ng pagdurusa." 29 Ngunit sinabi ni Abraham, "Nasa kanila si Moises at ang mga propeta; pakinggan nila sila." 30 At sinabi niya, "Hindi, amang Abraham, ngunit kung mayroong pumaroon sa kanila mula sa mga patay, sila'y magsisisi." 31 At sinabi niya sa kanya, "Kung hindi nila pinakikinggan si Moises at ang mga propeta, hindi rin sila makukumbinsi kahit may bumangon mula sa mga patay."`
+      },
+      {
+        reference: 'Exo 20:4~5',
+        label: 'Suliranin sa Henerasyon (Mana sa espiritu at laman)',
+        text: `4 "Huwag kang gagawa para sa iyong sarili ng diyus-diyusan, o ng anumang larawan ng anumang nasa langit sa itaas, o ng nasa lupa sa ibaba, o ng nasa tubig sa ilalim ng lupa: 5 huwag mong yuyukuran sila o paglingkuran man, sapagkat akong PANGINOON mong Diyos ay Diyos na mapanibughuin, na bumibisita sa kasamaan ng mga ama sa mga anak, hanggang sa ikatlong at ikaapat na salinlahi ng mga napopoot sa akin,"`
+      }
+    ]
+  },
+  {
+    id: 4,
+    title: '4. Paraan ng Tao',
+    subtitle: 'Relihiyon · Mabubuting gawa · Pilosopiya — hindi nakapagliligtas',
+    verses: [
+      {
+        reference: 'Gawa 4:12',
+        label: 'Relihiyon',
+        text: `At sa kanino mang iba ay walang kaligtasan; sapagkat walang ibang pangalan sa silong ng langit na ibinigay sa mga tao na sukat nating ikaligtas.`
+      },
+      {
+        reference: 'Isa 64:6',
+        label: 'Mabubuting Gawa',
+        text: `Sapagkat tayong lahat ay naging gaya ng karumal-dumal, at lahat ng aming katuwiran ay parang basahang marumi; at tayong lahat ay nalalanta na parang dahon, at ang aming mga kasamaan, na parang hangin, ay tumatangay sa amin.`
+      },
+      {
+        reference: 'Col 2:8',
+        label: 'Pilosopiya',
+        text: `Mag-ingat kayo, baka kayo'y maagaw ng sinuman sa pamamagitan ng kanyang pilosopiya at walang lamang kahibangan, ayon sa sali't saling sabi ng mga tao, ayon sa mga karunungang panlupa ng sanlibutan, at hindi ayon kay Cristo.`
+      }
+    ]
+  },
+  {
+    id: 5,
+    title: '5. Paraan ng Diyos',
+    subtitle: 'Tagapagligtas · Hesus · Krus · Muling Pagkabuhay · Kristo · Pag-akyat · Muling Pagdating',
+    verses: [
+      {
+        reference: 'Juan 3:16',
+        label: 'Tagapagligtas',
+        text: `Sapagkat gayon na lamang ang pagsinta ng Diyos sa sanlibutan, na ibinigay niya ang kanyang bugtong na Anak, upang ang sinumang sumampalataya sa kanya ay huwag mapahamak, kundi magkaroon ng buhay na walang hanggan.`
+      },
+      {
+        reference: 'Mat 1:21',
+        label: 'Hesus',
+        text: `At siya'y manganganak ng isang lalaki, at ang pangalan niya'y itatawag mong Jesus; sapagkat ililigtas niya ang kanyang bayan sa kanilang mga kasalanan.`
+      },
+      {
+        reference: 'Juan 19:30',
+        label: 'Krus',
+        text: `Nang matikman nga ni Jesus ang suka, sinabi niya, "Naganap na." At iniyukod niya ang kanyang ulo, at ibinigay ang kanyang espiritu.`
+      },
+      {
+        reference: '1 Cor 15:3~4',
+        label: 'Muling Pagkabuhay',
+        text: `3 Sapagkat sa una'y ipinagkaloob ko sa inyo, na siya ko namang itinanggap: na si Cristo ay namatay dahil sa ating mga kasalanan, ayon sa mga kasulatan; 4 at siya'y inilibing, at siya'y muling binuhay nang ikatlong araw, ayon sa mga kasulatan;`
+      },
+      {
+        reference: 'Mat 16:16',
+        label: 'Kristo',
+        text: `At sumagot si Simon Pedro at sinabi, "Ikaw ang Cristo, ang Anak ng Diyos na buhay."`
+      },
+      {
+        reference: 'Gawa 1:9~10',
+        label: 'Pag-akyat',
+        text: `9 At nang masabi niya ang mga bagay na ito, samantalang sila'y tumitingin, ay itinaas siya; at siya'y tinanggap ng isang ulap mula sa kanilang paningin. 10 At samantalang sila'y nakatitig sa langit habang siya'y umaalis, narito, dalawang lalaking nakatayo sa tabi nila na nakaputi,`
+      },
+      {
+        reference: 'Pah 22:20',
+        label: 'Muling Pagdating',
+        text: `20 Ang nagpatotoo ng mga bagay na ito ay nagsasabi, "Oo, ako'y madaling pumaparito." Siya nawa, halika nawa, Panginoong Jesus.`
+      }
+    ]
+  },
+  {
+    id: 6,
+    title: '6. Kristo — Tatlong Tungkulin',
+    subtitle: 'Tunay na Hari · Tunay na Saserdote · Tunay na Propeta',
+    verses: [
+      {
+        reference: 'Heb 2:14~15',
+        label: 'Tunay na Hari',
+        text: `14 Yamang ang mga anak ay may bahagi sa laman at dugo, siya'y nakipag-bahagi rin sa mga gayong bagay; upang sa pamamagitan ng kamatayan ay mawalang kapangyarihan yaong may kapangyarihan ng kamatayan, samakatuwid baga'y ang diyablo; 15 at mapalaya niya silang lahat na dahil sa takot sa kamatayan ay nangasakop ng pagkaalipin sa buong buhay nila.`
+      },
+      {
+        reference: 'Heb 9:11~12',
+        label: 'Tunay na Saserdote',
+        text: `11 Ngunit nang dumating si Cristo bilang dakilang saserdote ng mga mabubuting bagay na darating, sa pamamagitan ng higit na dakila at lalong sakdal na tabernakulo, na hindi ginawa ng mga kamay, ibig sabihin, hindi sa paglalang na ito; 12 hindi sa pamamagitan ng dugo ng mga kambing at mga guya, kundi sa pamamagitan ng kanyang sariling dugo, ay pumasok minsan na para sa lahat sa Dakong Banal, na nagkamit ng walang hanggang katubusan.`
+      },
+      {
+        reference: 'Heb 10:19~20',
+        label: 'Tunay na Propeta',
+        text: `19 Kaya nga, mga kapatid, sa pagkakaroon ng katapangang ito sa pagpasok sa Dakong Banal sa pamamagitan ng dugo ni Jesus, 20 sa pamamagitan ng daang bago at buhay na kanyang itinalaga para sa atin, sa pamamagitan ng tabing, ibig sabihin, ng kanyang laman,`
+      }
+    ]
+  },
+  {
+    id: 7,
+    title: '7. Paglutas sa Pangunahing Suliranin',
+    subtitle: 'Pagsira sa gawa ng Diyablo · Kalayaan · Ang Daan',
+    verses: [
+      {
+        reference: '1 Juan 3:8',
+        label: 'Gawa ng Diyablo',
+        text: `Ang nagkakasala ay sa diyablo; sapagkat ang diyablo ay nagkasala mula nang pasimula.`
+      },
+      {
+        reference: 'Rom 8:2',
+        label: 'Kalayaan',
+        text: `Sapagkat ang kautusan ng Espiritu ng buhay na kay Cristo Jesus ang nagpalaya sa akin mula sa kautusan ng kasalanan at ng kamatayan.`
+      },
+      {
+        reference: 'Juan 14:6',
+        label: 'Ang Daan',
+        text: `Sinabi sa kanya ni Jesus, "Ako ang daan, at ang katotohanan, at ang buhay; walang taong makaparoroon sa Ama, kundi sa pamamagitan ko."`
+      }
+    ]
+  },
+  {
+    id: 8,
+    title: '8. Paano Maliligtas',
+    subtitle: 'Tanggapin · Ipahayag sa puso at bibig · Buksan ang pinto ng puso · Ngayon',
+    verses: [
+      {
+        reference: 'Juan 1:12',
+        label: 'Tanggapin',
+        text: `Datapuwa't ang lahat ng nangagsitanggap sa kanya, ay pinagkalooban niya sila ng karapatan na maging mga anak ng Diyos, sa makatuwid baga'y ang mga sumasampalataya sa kanyang pangalan;`
+      },
+      {
+        reference: 'Rom 10:9~10',
+        label: 'Puso · Bibig · Pahayag',
+        text: `9 Sapagkat kung ipahahayag mo ng iyong bibig si Jesus na Panginoon, at sasampalataya ka sa iyong puso na binuhay siyang muli ng Diyos mula sa mga patay, ay maliligtas ka: 10 sapagkat sa puso ang tao'y nananampalataya sa ikatutuwid, at sa bibig ang pagpapahayag ay ginagawa sa ikaliligtas.`
+      },
+      {
+        reference: 'Pah 3:20',
+        label: 'Buksan ang pinto ng puso',
+        text: `Narito ako'y nakatayo sa pintuan at tumutuktok: kung ang sinuman ay duminig ng aking tinig at magbukas ng pinto, ako'y papasok sa kanya, at hahapunan kong kasalo niya, at siya'y kasalo ko.`
+      },
+      {
+        reference: 'Kaw 27:1',
+        label: 'Ngayon',
+        text: `Huwag mong ipagmapuri ang kinabukasan; sapagkat hindi mo nalalaman kung ano ang ilalabas ng isang araw.`
+      }
+    ]
+  },
+  {
+    id: 9,
+    title: '9. Panalangin ng Pagtanggap',
+    subtitle: 'Panalangin upang tanggapin si Hesukristo bilang Panginoon ng puso',
+    verses: [
+      {
+        reference: 'Panalangin ng Pagpapasiya',
+        label: 'Manalangin nang magkasama',
+        text: `Buhay na Diyos,
+Ako'y isang makasalanan.
+Nadaya ako ng diyablo at lumayo ako sa iyo.
+Hanggang ngayon ay namumuhay ako ayon sa sarili kong kalooban at kagustuhan,
+sa gitna ng pagdurusa.
+
+Sa sandaling ito ay binubuksan ko nang lubusan ang pinto ng aking puso,
+at sumasampalataya ako na si Jesus ay namatay sa krus
+at muling nabuhay bilang Cristo.
+
+Si Jesucristo na dumurog sa ulo ng diyablo,
+nagpatawad sa lahat ng aking mga kasalanan,
+at nagbukas ng daan upang makipagkita sa Diyos,
+ay tinatanggap ko bilang Panginoon ng aking puso.
+
+Ngayon din sa pamamagitan ng Espiritu Santo,
+pumasok ka sa aking puso,
+gawin mo akong anak ng Diyos,
+at hayaan mo akong mamuhay sa tunay na kaligayahan.
+
+Nawa'y patnubayan ako ng Espiritu ng Katotohanan
+at kumilos sa akin.
+
+Sa pangalan ni Jesucristo ako'y nananalangin. Amen.`
+      },
+      {
+        reference: 'Salita ng Pagpapala',
+        label: 'Isang bagong simula',
+        text: `Ngayon ay tinanggap mo na si Cristo Jesus bilang iyong Tagapagligtas, kaya sa pamamagitan ng buhay kasama ang Diyos ay mamumuhay ka sa pinagpalang buhay na ibinibigay niya. Araw-araw basahin mo ang Salita ng Diyos, at sa pamamagitan nito ay matanggap mo ang buhay na higit na mahalaga kaysa anumang maibibigay ng sanlibutan—ang buhay mismo, na walang katulad. Pinagpapala kita at ipinapanalangin. Mahal kita.`
+      }
+    ]
+  },
+  {
+    id: 10,
+    title: '10. Mga Pagpapala ng Naligtas',
+    subtitle: 'Pananahanan ng Espiritu · Patnubay · Kapangyarihan · Tulong ng Anghel · Nakatali si Satanas · Mamamayan ng Langit · Pang-mundong Ebanghelisasyon',
+    verses: [
+      {
+        reference: '1 Cor 3:16',
+        label: 'Pananahanan ng Espiritu',
+        text: `Hindi ba ninyo nalalaman na kayo'y templo ng Diyos, at na ang Espiritu ng Diyos ay nananahan sa inyo?`
+      },
+      {
+        reference: 'Juan 14:26~27',
+        label: 'Patnubay ng Espiritu',
+        text: `26 Datapuwa't ang Mangaaliw, ang Espiritu Santo, na siyang susuguin ng Ama sa aking pangalan, siya ang magtuturo sa inyo ng lahat ng mga bagay, at magpapaalala sa inyo ng lahat na sa inyo'y aking sinabi. 27 Ang kapayapaan ay iniiwan ko sa inyo; ang aking kapayapaan ay ibinibigay ko sa inyo: hindi gaya ng ibinibigay ng sanlibutan, ang ibinibigay ko sa inyo. Huwag magulumihanan ang inyong puso, ni matakot man.`
+      },
+      {
+        reference: 'Juan 14:14',
+        label: 'Kapangyarihan ng Espiritu',
+        text: `Kung hingi kayo ng anumang bagay sa pangalan ko, gagawin ko.`
+      },
+      {
+        reference: 'Heb 1:14',
+        label: 'Tulong ng Anghel',
+        text: `Hindi baga silang lahat ay mga espiritung nagmiministro, na sinugo upang magsigawa ng paglilingkod sa kapakinabangan ng magsisipagmana ng kaligtasan?`
+      },
+      {
+        reference: 'Luc 10:19',
+        label: 'Nakatali si Satanas',
+        text: `Narito, binigyan ko kayo ng kapangyarihan na tumapak sa mga ahas at mga alakdan, at sa lahat ng kapangyarihan ng kaaway; at sa anumang paraan ay hindi kayo magkakasakit.`
+      },
+      {
+        reference: 'Fil 3:20',
+        label: 'Mamamayan ng Langit',
+        text: `Sapagkat ang ating pagkamamamayan ay nasa langit; mula roon ay hinihintay rin natin ang isang Tagapagligtas, ang Panginoong Jesucristo;`
+      },
+      {
+        reference: 'Gawa 1:8',
+        label: 'Pang-mundong Ebanghelisasyon',
+        text: `Datapuwa't tatanggap kayo ng kapangyarihan, pagdating sa inyo ng Espiritu Santo: at kayo'y magiging mga saksi ko sa Jerusalem, at sa buong Judea at Samaria, at hanggang sa kahuli-hulihang hangganan ng lupa.`
+      }
+    ]
+  },
+  {
+    id: 11,
+    title: 'Dakilang Utos',
+    subtitle: 'Sanggunian · Mat 28 · Mar 16 · Mga Gawa 1:8',
+    verses: [
+      {
+        reference: 'Mat 28:16~20',
+        label: '',
+        text: `16 Datapuwa't ang labing-isang alagad ay nagsiparoon sa Galilea, sa bundok na sinabi sa kanila ni Jesus. 17 At nang siya'y kanilang makita, ay siya'y kanilang sinamba; datapuwa't ang ilan ay nangagalinlangan. 18 At lumapit si Jesus sa kanila at nagsalita sa kanila, na sinasabi, "Ibinigay sa akin ang lahat ng kapangyarihan sa langit at sa lupa. 19 Kayo nga'y magsiyaon, gawin ninyong mga alagad ang lahat ng mga bansa, bautismuhan sila sa pangalan ng Ama at ng Anak at ng Espiritu Santo, 20 ituro ninyo sa kanila na sundin ang lahat ng mga bagay na iniutos ko sa inyo: at narito, ako'y sumasainyong palagi, hanggang sa katapusan ng sanlibutan." Siya nawa.`
+      },
+      {
+        reference: 'Mar 16:15~20',
+        label: '',
+        text: `15 At sinabi niya sa kanila, "Magsiyaon kayo sa buong sanlibutan, at ipangaral ninyo ang ebanghelyo sa lahat ng kinapal. 16 Ang sumampalataya at mabautismuhan ay maliligtas; datapuwa't ang hindi sumampalataya ay parurusahan. 17 At lalakip ang mga tandang ito sa magsisisampalataya: mangagpapalayas sila ng mga demonio sa aking pangalan; mangagsasalita sila ng mga bagong wika; 18 sila'y manghahawak ng mga ahas, at kung sila'y uminom ng anumang bagay na nakamamatay, ay hindi sila magkakasakit sa anumang paraan; sila'y mangagpapatong ng kanilang mga kamay sa mga maysakit, at sila'y magsisigaling." 19 Pagkatapos nga'y ang Panginoong Jesus, pagkatapos niyang magsalita sa kanila, ay tinanggap sa itaas sa langit, at lumuklok sa kanan ng Diyos. 20 At sila'y nagsiyaon at nangaral sa lahat ng dako, na gumagawang kasama nila ang Panginoon, at pinatibay ang salita sa pamamagitan ng mga tandang kasunod nito. Siya nawa.`
+      },
+      {
+        reference: 'Gawa 1:8',
+        label: '',
+        text: `Datapuwa't tatanggap kayo ng kapangyarihan, pagdating sa inyo ng Espiritu Santo: at kayo'y magiging mga saksi ko sa Jerusalem, at sa buong Judea at Samaria, at hanggang sa kahuli-hulihang hangganan ng lupa.`
+      }
+    ]
+  },
+  {
+    id: 12,
+    title: 'Limang Katiyakan ng Mananampalataya',
+    subtitle: 'Sanggunian · Kaligtasan · Patnubay · Sagot sa panalangin · Kapatawaran · Tagumpay',
+    verses: [
+      {
+        reference: '1 Juan 5:11~12',
+        label: 'Katiyakan ng Kaligtasan',
+        text: `11 At ang patotoo ay ito, na binigyan tayo ng Diyos ng buhay na walang hanggan, at ang buhay na ito ay nasa kanyang Anak. 12 Ang kinaroroonan ng Anak ay siyang may buhay; ang hindi kinaroroonan ng Anak ng Diyos ay walang buhay.`
+      },
+      {
+        reference: 'Juan 14:26~27',
+        label: 'Katiyakan ng Patnubay',
+        text: `26 Datapuwa't ang Mangaaliw, ang Espiritu Santo, na siyang susuguin ng Ama sa aking pangalan, siya ang magtuturo sa inyo ng lahat ng mga bagay, at magpapaalala sa inyo ng lahat na sa inyo'y aking sinabi. 27 Ang kapayapaan ay iniiwan ko sa inyo; ang aking kapayapaan ay ibinibigay ko sa inyo: hindi gaya ng ibinibigay ng sanlibutan, ang ibinibigay ko sa inyo. Huwag magulumihanan ang inyong puso, ni matakot man.`
+      },
+      {
+        reference: 'Juan 14:14',
+        label: 'Katiyakan ng Sagot sa Panalangin',
+        text: `Kung hingi kayo ng anumang bagay sa pangalan ko, gagawin ko.`
+      },
+      {
+        reference: '1 Juan 1:9',
+        label: 'Katiyakan ng Kapatawaran',
+        text: `Kung ipinahahayag natin ang ating mga kasalanan, siya'y tapat at matuwid na magpapatawad sa atin ng ating mga kasalanan, at lilinisin tayo sa lahat ng kalikuan.`
+      },
+      {
+        reference: 'Rom 8:37',
+        label: 'Katiyakan ng Tagumpay',
+        text: `Subalit sa lahat ng mga bagay na ito ay higit pa tayo sa mga mananaig sa pamamagitan niya na umibig sa atin.`
+      }
+    ]
+  }
 ])
 
 /** @type {Stage[]} — ខ្មែរ Khmer (titles & subtitles only; verses pending) */
@@ -976,7 +1773,11 @@ export const UI_TEXT = {
     miniMapLabel: '복음의 흐름',
     miniMapCurrent: (n) => `현재 ${n}단계`,
     languageLabel: '언어',
-    translationPending: '번역 준비중'
+    translationPending: '번역 준비중',
+    fontSizeLabel: '글자 크기',
+    fontSmaller: '작게',
+    fontLarger: '크게',
+    fontReset: '리셋'
   },
   en: {
     appTitle: 'The Cross Way',
@@ -988,7 +1789,11 @@ export const UI_TEXT = {
     miniMapLabel: 'Gospel Flow',
     miniMapCurrent: (n) => `Step ${n}`,
     languageLabel: 'Language',
-    translationPending: 'Verse translation pending'
+    translationPending: 'Verse translation pending',
+    fontSizeLabel: 'Text size',
+    fontSmaller: 'Smaller',
+    fontLarger: 'Larger',
+    fontReset: 'Reset'
   },
   id: {
     appTitle: 'Jalan Keselamatan',
@@ -1000,7 +1805,11 @@ export const UI_TEXT = {
     miniMapLabel: 'Alur Injil',
     miniMapCurrent: (n) => `Tahap ${n}`,
     languageLabel: 'Bahasa',
-    translationPending: 'Terjemahan ayat tertunda'
+    translationPending: 'Terjemahan ayat tertunda',
+    fontSizeLabel: 'Ukuran teks',
+    fontSmaller: 'Kecil',
+    fontLarger: 'Besar',
+    fontReset: 'Atur ulang'
   },
   tl: {
     appTitle: 'Daan ng Kaligtasan',
@@ -1012,7 +1821,11 @@ export const UI_TEXT = {
     miniMapLabel: 'Daloy ng Ebanghelyo',
     miniMapCurrent: (n) => `Yugto ${n}`,
     languageLabel: 'Wika',
-    translationPending: 'Hinihintay ang salin ng talata'
+    translationPending: 'Hinihintay ang salin ng talata',
+    fontSizeLabel: 'Sukat ng teksto',
+    fontSmaller: 'Maliit',
+    fontLarger: 'Malaki',
+    fontReset: 'I-reset'
   },
   km: {
     appTitle: 'ផ្លូវនៃសេចក្ដីសង្គ្រោះ',
@@ -1024,17 +1837,24 @@ export const UI_TEXT = {
     miniMapLabel: 'លំហូរនៃដំណឹងល្អ',
     miniMapCurrent: (n) => `ដំណាក់កាល ${n}`,
     languageLabel: 'ភាសា',
-    translationPending: 'កំពុងរង់ចាំការបកប្រែខ'
+    translationPending: 'កំពុងរង់ចាំការបកប្រែខ',
+    fontSizeLabel: 'ទំហំអក្សរ',
+    fontSmaller: 'តូច',
+    fontLarger: 'ធំ',
+    fontReset: 'កំណត់ឡើងវិញ'
   }
 }
 
 const LANGUAGE_BUNDLES = {
   ko: { stages: stagesKo, ready: true },
   en: { stages: stagesEn, ready: true },
-  // id/tl/km: 제목·부제·UI 라벨은 각 언어로 번역 완료. verses 는 영문(WEB) fallback —
-  // ready=false 로 두어 카드의 'translation pending' 배지가 노출되도록 한다.
-  id: { stages: stagesId, ready: false },
-  tl: { stages: stagesTl, ready: false },
+  // id/tl: 본문까지 각 언어로 번역 완료. 현지 사용자 / 정식 번역본 대조 검증 권장.
+  //   - id: Terjemahan Baru (LAI) 스타일
+  //   - tl: Ang Dating Biblia 1905 baseline (light modernization)
+  id: { stages: stagesId, ready: true },
+  tl: { stages: stagesTl, ready: true },
+  // km: 제목·부제·UI 라벨만 번역. 본문은 영문(WEB) fallback —
+  //      ready=false 로 두어 'translation pending' 배지 노출.
   km: { stages: stagesKm, ready: false }
 }
 

@@ -30,6 +30,9 @@
   /* Motion */
   --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
   --transition-card: 380ms var(--ease-out);
+
+  /* 사용자 글자 크기 조정 배율 — App.jsx 가 동적으로 갱신 (0.8 ~ 1.6) */
+  --text-scale: 1;
 }
 
 * {
@@ -249,7 +252,7 @@ button {
 }
 
 .card-title {
-  font-size: clamp(18px, 3.6vw, 24px);
+  font-size: calc(clamp(18px, 3.6vw, 24px) * var(--text-scale));
   font-weight: 700;
   margin: 0 0 4px;
   background: linear-gradient(120deg, #ffffff 10%, var(--accent-gold) 90%);
@@ -260,7 +263,7 @@ button {
 }
 
 .card-subtitle {
-  font-size: clamp(11px, 2.6vw, 13px);
+  font-size: calc(clamp(11px, 2.6vw, 13px) * var(--text-scale));
   font-weight: 500;
   color: var(--text-muted);
   margin: 0 0 12px;
@@ -350,14 +353,14 @@ button {
 }
 
 .verse-ref {
-  font-size: clamp(14px, 3vw, 16px);
+  font-size: calc(clamp(14px, 3vw, 16px) * var(--text-scale));
   font-weight: 700;
   color: var(--accent-gold);
   letter-spacing: 0.02em;
 }
 
 .verse-label {
-  font-size: clamp(13px, 3vw, 15px);
+  font-size: calc(clamp(13px, 3vw, 15px) * var(--text-scale));
   font-weight: 700;
   color: var(--accent-cyan);
   background: rgba(125, 211, 252, 0.14);
@@ -369,7 +372,7 @@ button {
 }
 
 .verse-text {
-  font-size: clamp(17px, 4.4vw, 21px);
+  font-size: calc(clamp(17px, 4.4vw, 21px) * var(--text-scale));
   line-height: 1.78;
   color: #ffffff;
   font-weight: 400;
@@ -550,6 +553,112 @@ button {
   font-weight: 700;
   letter-spacing: 0.08em;
   color: var(--text-muted);
+}
+
+/* ============================================================
+   FontSizeToggle — 글자 크기 조정 (Aa 버튼 + 드롭다운)
+   ============================================================ */
+
+.font-wrap {
+  position: relative;
+}
+
+.font-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 32px;
+  color: var(--text-primary);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 999px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background 180ms var(--ease-out);
+}
+.font-btn:hover {
+  background: var(--glass-bg-strong);
+}
+
+.font-btn-icon {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.font-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px;
+  background: rgba(12, 16, 48, 0.86);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  z-index: 10;
+  animation: menu-in 180ms var(--ease-out);
+  white-space: nowrap;
+}
+
+.font-step-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 38px;
+  height: 32px;
+  padding: 0 10px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  transition: background 140ms var(--ease-out), opacity 140ms var(--ease-out);
+}
+.font-step-btn:hover:not([disabled]) {
+  background: rgba(246, 198, 108, 0.18);
+  color: var(--accent-gold);
+}
+.font-step-btn[disabled] {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.font-percent {
+  min-width: 50px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--accent-gold);
+}
+
+.font-reset-btn {
+  height: 32px;
+  padding: 0 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  transition: background 140ms var(--ease-out), color 140ms var(--ease-out),
+    opacity 140ms var(--ease-out);
+}
+.font-reset-btn:hover:not([disabled]) {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+}
+.font-reset-btn[disabled] {
+  opacity: 0.35;
+  cursor: not-allowed;
 }
 
 /* ============================================================
